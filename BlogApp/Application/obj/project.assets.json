@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/qais/Downloads/BlogApp/Application/Application.csproj",
+      "projectUniqueName": "/home/qais/Downloads/BlogAppTask/BlogApp/Application/Application.csproj",
       "projectName": "Application",
-      "projectPath": "/home/qais/Downloads/BlogApp/Application/Application.csproj",
+      "projectPath": "/home/qais/Downloads/BlogAppTask/BlogApp/Application/Application.csproj",
       "packagesPath": "/home/qais/.nuget/packages/",
-      "outputPath": "/home/qais/Downloads/BlogApp/Application/obj/",
+      "outputPath": "/home/qais/Downloads/BlogAppTask/BlogApp/Application/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/home/qais/.nuget/NuGet/NuGet.Config"
