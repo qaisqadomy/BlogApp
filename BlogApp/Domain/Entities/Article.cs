@@ -1,7 +1,6 @@
 using System.ComponentModel.DataAnnotations;
-using Domain.Entities;
 
-namespace Domain.Aggregates;
+namespace Domain.Entities;
 
 public class Article
 {

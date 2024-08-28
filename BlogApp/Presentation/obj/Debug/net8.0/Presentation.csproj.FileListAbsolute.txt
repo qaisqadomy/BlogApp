@@ -39,6 +39,7 @@
 /home/qais/Downloads/BlogAppTask/BlogApp/Presentation/bin/Debug/net8.0/Presentation.dll
 /home/qais/Downloads/BlogAppTask/BlogApp/Presentation/bin/Debug/net8.0/Presentation.pdb
 /home/qais/Downloads/BlogAppTask/BlogApp/Presentation/bin/Debug/net8.0/Humanizer.dll
+/home/qais/Downloads/BlogAppTask/BlogApp/Presentation/bin/Debug/net8.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll
 /home/qais/Downloads/BlogAppTask/BlogApp/Presentation/bin/Debug/net8.0/Microsoft.AspNetCore.OpenApi.dll
 /home/qais/Downloads/BlogAppTask/BlogApp/Presentation/bin/Debug/net8.0/Microsoft.Bcl.AsyncInterfaces.dll
 /home/qais/Downloads/BlogAppTask/BlogApp/Presentation/bin/Debug/net8.0/Microsoft.CodeAnalysis.dll
@@ -50,6 +51,12 @@
 /home/qais/Downloads/BlogAppTask/BlogApp/Presentation/bin/Debug/net8.0/Microsoft.EntityFrameworkCore.Design.dll
 /home/qais/Downloads/BlogAppTask/BlogApp/Presentation/bin/Debug/net8.0/Microsoft.EntityFrameworkCore.Relational.dll
 /home/qais/Downloads/BlogAppTask/BlogApp/Presentation/bin/Debug/net8.0/Microsoft.Extensions.DependencyModel.dll
+/home/qais/Downloads/BlogAppTask/BlogApp/Presentation/bin/Debug/net8.0/Microsoft.IdentityModel.Abstractions.dll
+/home/qais/Downloads/BlogAppTask/BlogApp/Presentation/bin/Debug/net8.0/Microsoft.IdentityModel.JsonWebTokens.dll
+/home/qais/Downloads/BlogAppTask/BlogApp/Presentation/bin/Debug/net8.0/Microsoft.IdentityModel.Logging.dll
+/home/qais/Downloads/BlogAppTask/BlogApp/Presentation/bin/Debug/net8.0/Microsoft.IdentityModel.Protocols.dll
+/home/qais/Downloads/BlogAppTask/BlogApp/Presentation/bin/Debug/net8.0/Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+/home/qais/Downloads/BlogAppTask/BlogApp/Presentation/bin/Debug/net8.0/Microsoft.IdentityModel.Tokens.dll
 /home/qais/Downloads/BlogAppTask/BlogApp/Presentation/bin/Debug/net8.0/Microsoft.OpenApi.dll
 /home/qais/Downloads/BlogAppTask/BlogApp/Presentation/bin/Debug/net8.0/Mono.TextTemplating.dll
 /home/qais/Downloads/BlogAppTask/BlogApp/Presentation/bin/Debug/net8.0/Npgsql.dll
@@ -63,6 +70,7 @@
 /home/qais/Downloads/BlogAppTask/BlogApp/Presentation/bin/Debug/net8.0/System.Composition.Hosting.dll
 /home/qais/Downloads/BlogAppTask/BlogApp/Presentation/bin/Debug/net8.0/System.Composition.Runtime.dll
 /home/qais/Downloads/BlogAppTask/BlogApp/Presentation/bin/Debug/net8.0/System.Composition.TypedParts.dll
+/home/qais/Downloads/BlogAppTask/BlogApp/Presentation/bin/Debug/net8.0/System.IdentityModel.Tokens.Jwt.dll
 /home/qais/Downloads/BlogAppTask/BlogApp/Presentation/bin/Debug/net8.0/cs/Microsoft.CodeAnalysis.resources.dll
 /home/qais/Downloads/BlogAppTask/BlogApp/Presentation/bin/Debug/net8.0/de/Microsoft.CodeAnalysis.resources.dll
 /home/qais/Downloads/BlogAppTask/BlogApp/Presentation/bin/Debug/net8.0/es/Microsoft.CodeAnalysis.resources.dll
@@ -115,9 +123,11 @@
 /home/qais/Downloads/BlogAppTask/BlogApp/Presentation/bin/Debug/net8.0/tr/Microsoft.CodeAnalysis.Workspaces.resources.dll
 /home/qais/Downloads/BlogAppTask/BlogApp/Presentation/bin/Debug/net8.0/zh-Hans/Microsoft.CodeAnalysis.Workspaces.resources.dll
 /home/qais/Downloads/BlogAppTask/BlogApp/Presentation/bin/Debug/net8.0/zh-Hant/Microsoft.CodeAnalysis.Workspaces.resources.dll
+/home/qais/Downloads/BlogAppTask/BlogApp/Presentation/bin/Debug/net8.0/Application.dll
 /home/qais/Downloads/BlogAppTask/BlogApp/Presentation/bin/Debug/net8.0/Domain.dll
 /home/qais/Downloads/BlogAppTask/BlogApp/Presentation/bin/Debug/net8.0/Infrastructure.dll
 /home/qais/Downloads/BlogAppTask/BlogApp/Presentation/bin/Debug/net8.0/Infrastructure.pdb
+/home/qais/Downloads/BlogAppTask/BlogApp/Presentation/bin/Debug/net8.0/Application.pdb
 /home/qais/Downloads/BlogAppTask/BlogApp/Presentation/bin/Debug/net8.0/Domain.pdb
 /home/qais/Downloads/BlogAppTask/BlogApp/Presentation/obj/Debug/net8.0/Presentation.csproj.AssemblyReference.cache
 /home/qais/Downloads/BlogAppTask/BlogApp/Presentation/obj/Debug/net8.0/Presentation.GeneratedMSBuildEditorConfig.editorconfig

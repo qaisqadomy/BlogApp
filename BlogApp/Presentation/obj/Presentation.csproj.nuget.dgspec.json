@@ -4,6 +4,81 @@
     "/home/qais/Downloads/BlogAppTask/BlogApp/Presentation/Presentation.csproj": {}
   },
   "projects": {
+    "/home/qais/Downloads/BlogAppTask/BlogApp/Application/Application.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/qais/Downloads/BlogAppTask/BlogApp/Application/Application.csproj",
+        "projectName": "Application",
+        "projectPath": "/home/qais/Downloads/BlogAppTask/BlogApp/Application/Application.csproj",
+        "packagesPath": "/home/qais/.nuget/packages/",
+        "outputPath": "/home/qais/Downloads/BlogAppTask/BlogApp/Application/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/qais/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "/home/qais/Downloads/BlogAppTask/BlogApp/Domain/Domain.csproj": {
+                "projectPath": "/home/qais/Downloads/BlogAppTask/BlogApp/Domain/Domain.csproj"
+              },
+              "/home/qais/Downloads/BlogAppTask/BlogApp/Infrastructure/Infrastructure.csproj": {
+                "projectPath": "/home/qais/Downloads/BlogAppTask/BlogApp/Infrastructure/Infrastructure.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[8.0.8, )"
+            },
+            "Microsoft.EntityFrameworkCore.Relational": {
+              "target": "Package",
+              "version": "[8.0.8, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/8.0.401/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
     "/home/qais/Downloads/BlogAppTask/BlogApp/Domain/Domain.csproj": {
       "version": "1.0.0",
       "restore": {
@@ -42,6 +117,12 @@
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore.Relational": {
+              "target": "Package",
+              "version": "[8.0.8, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -115,6 +196,10 @@
               "target": "Package",
               "version": "[8.0.8, )"
             },
+            "Microsoft.EntityFrameworkCore.Relational": {
+              "target": "Package",
+              "version": "[8.0.8, )"
+            },
             "Npgsql.EntityFrameworkCore.PostgreSQL": {
               "target": "Package",
               "version": "[8.0.4, )"
@@ -162,6 +247,9 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
+              "/home/qais/Downloads/BlogAppTask/BlogApp/Application/Application.csproj": {
+                "projectPath": "/home/qais/Downloads/BlogAppTask/BlogApp/Application/Application.csproj"
+              },
               "/home/qais/Downloads/BlogAppTask/BlogApp/Infrastructure/Infrastructure.csproj": {
                 "projectPath": "/home/qais/Downloads/BlogAppTask/BlogApp/Infrastructure/Infrastructure.csproj"
               }
@@ -183,6 +271,10 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[8.0.8, )"
+            },
             "Microsoft.AspNetCore.OpenApi": {
               "target": "Package",
               "version": "[8.0.8, )"
@@ -194,6 +286,10 @@
             "Microsoft.EntityFrameworkCore.Design": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
+              "target": "Package",
+              "version": "[8.0.8, )"
+            },
+            "Microsoft.EntityFrameworkCore.Relational": {
               "target": "Package",
               "version": "[8.0.8, )"
             },

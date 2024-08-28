@@ -1,8 +1,11 @@
+using Domain.Entities;
+
 namespace Domain.IRepositories;
 
 public interface IUserRepository
 {
-    public void Register(string userName, string email , string password);
-    public void Login(string email, string password);
-    
+    public void Register(User user);
+    public string Login(string email, string password);
+    public User Get(string token);
+    public void Update(User user, string token);
 }

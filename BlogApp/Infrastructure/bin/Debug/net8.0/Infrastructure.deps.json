@@ -11,6 +11,7 @@
           "Domain": "1.0.0",
           "Microsoft.EntityFrameworkCore": "8.0.8",
           "Microsoft.EntityFrameworkCore.Design": "8.0.8",
+          "Microsoft.EntityFrameworkCore.Relational": "8.0.8",
           "Npgsql.EntityFrameworkCore.PostgreSQL": "8.0.4"
         },
         "runtime": {
@@ -552,6 +553,9 @@
       },
       "System.Threading.Channels/6.0.0": {},
       "Domain/1.0.0": {
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore.Relational": "8.0.8"
+        },
         "runtime": {
           "Domain.dll": {
             "assemblyVersion": "1.0.0",
