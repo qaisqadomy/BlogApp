@@ -49,6 +49,4 @@ public class CommentService
     {
         commentRepository.DeleteComment(id);
     }
-
-
 }

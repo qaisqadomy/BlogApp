@@ -57,7 +57,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
 }
 
-app.UseMiddleware<ExceptionHandlingMiddleware>();
+//app.UseMiddleware<ExceptionHandlingMiddleware>();
 
 app.UseAuthentication();
 app.UseAuthorization();
