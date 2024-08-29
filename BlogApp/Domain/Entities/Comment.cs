@@ -9,6 +9,6 @@ public class Comment
     public required string Body { get; set; }
     public required DateTime CreatedAt { get; set; }
     public required DateTime UpdatedAt { get; set; }
-    public required User Author { get; set; }
+    public required Author Author { get; set; }
 
 }

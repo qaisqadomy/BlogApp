@@ -11,5 +11,5 @@ public class ArticleDTO
     public DateTime UpdatedAt { get; set; }
     public bool Favorited { get; set; }
     public int FavoritesCount { get; set; }
-    public required UserDTO Author { get; set; }
+    public required UserDataDTO Author { get; set; }
 }

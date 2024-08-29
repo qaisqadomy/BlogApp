@@ -4,8 +4,8 @@ namespace Domain.IRepositories;
 
 public interface ICommentRepository
 {
+    public List<Comment> GetAll();
     public void AddComment (Comment comment);
-    public void UpdateComment (Comment comment ,int id);
     public void DeleteComment (int id);
 
 }

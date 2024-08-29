@@ -34,7 +34,7 @@ public class ArticleRepository : IArticleRepository
 
     public List<Article> GetAll()
     {
-        List<Article> list = context.Articles.Include(a => a.Author).ToList();
+        List<Article> list = [.. context.Articles.Include(a => a.Author)];
         return list;
     }
 

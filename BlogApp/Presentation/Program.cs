@@ -3,6 +3,7 @@ using Application.Repositories;
 using Application.Services;
 using Domain.IRepositories;
 using Infrastructure.Data;
+using LibraryManagment.Middleware;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -54,15 +55,15 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI();
 }
 
-//app.UseMiddleware<ExceptionHandlingMiddleware>();
+app.UseMiddleware<ExceptionHandlingMiddleware>();
 
 app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapArticleEndpoint();
 app.MapUserEndpoint();
+app.MapCommentEndpoint();
 
 app.Run();
