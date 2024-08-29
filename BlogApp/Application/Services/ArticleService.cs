@@ -26,10 +26,7 @@ public class ArticleService
         UpdatedAt = art.UpdatedAt,
         Favorited = art.Favorited,
         FavoritesCount = art.FavoritesCount,
-        Author = new UserDataDTO
-        {   UserName = art.Author.UserName,
-            Email = art.Author.Email
-        }
+        AuthorId =  art.AuthorId
     }).ToList();
 
     }
@@ -46,10 +43,7 @@ public class ArticleService
         UpdatedAt = art.UpdatedAt,
         Favorited = art.Favorited,
         FavoritesCount = art.FavoritesCount,
-        Author = new UserDataDTO
-        {   UserName = art.Author.UserName,
-            Email = art.Author.Email
-        }
+            AuthorId =  art.AuthorId
     }).ToList();
     }
     public void AddArticle(ArticleDTO art){
@@ -63,11 +57,7 @@ public class ArticleService
         UpdatedAt = art.UpdatedAt,
         Favorited = art.Favorited,
         FavoritesCount = art.FavoritesCount,
-        Author = new User
-        {   UserName = art.Author.UserName,
-            Email = art.Author.Email,
-            Password = ""
-        }
+               AuthorId =  art.AuthorId
 
         } ;
         articleRepository.AddArticle(article1);
@@ -83,11 +73,7 @@ public class ArticleService
         UpdatedAt = art.UpdatedAt,
         Favorited = art.Favorited,
         FavoritesCount = art.FavoritesCount,
-        Author = new User
-        {   UserName = art.Author.UserName,
-            Email = art.Author.Email,
-            Password = ""
-        }
+               AuthorId =  art.AuthorId
         } ;
         articleRepository.UpdateArticle(article1,id);
     }

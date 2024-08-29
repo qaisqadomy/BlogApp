@@ -15,5 +15,5 @@ public class Article
     public DateTime UpdatedAt { get; set; }
     public bool Favorited { get; set; }
     public int FavoritesCount { get; set; }
-    public required User Author { get; set; }
+    public required int AuthorId { get; set; }
 }

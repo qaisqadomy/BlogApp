@@ -10,7 +10,6 @@ public class CommentService
     public CommentService(ICommentRepository commentRepository)
     {
         this.commentRepository = commentRepository;
-
     }
     public List<CommentDTO> GetAll()
     {
@@ -20,11 +19,7 @@ public class CommentService
             Body = comment.Body,
             CreatedAt = comment.CreatedAt,
             UpdatedAt = comment.UpdatedAt,
-            Author = new UserDataDTO
-            {
-                UserName = comment.Author.UserName,
-                Email = comment.Author.Email,
-            }
+            AuthorId = comment.AuthorId
         });
     }
 
@@ -35,15 +30,9 @@ public class CommentService
             Body = comment.Body,
             CreatedAt = comment.CreatedAt,
             UpdatedAt = comment.UpdatedAt,
-            Author = new User
-            {
-                UserName = comment.Author.UserName,
-                Email = comment.Author.Email,
-                Password = ""
-            }
+            AuthorId = comment.AuthorId
         };
         commentRepository.AddComment(comment1);
-
     }
     public void DeleteComment(int id)
     {

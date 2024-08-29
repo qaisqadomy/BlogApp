@@ -14,7 +14,7 @@ public class CommentRepository : ICommentRepository
         this.context = context;
     }
     public List<Comment> GetAll(){
-        List<Comment> list = [.. context.Comments.Include(u => u.Author)];
+        List<Comment> list = [.. context.Comments];
         if(list == null){return new List<Comment>();}
         else {return list;}
     }
@@ -30,5 +30,4 @@ public class CommentRepository : ICommentRepository
         if (c == null) { throw new NotFound(""); }
         else {context.Comments.Remove(c); context.SaveChanges();}
     }
-
 }
