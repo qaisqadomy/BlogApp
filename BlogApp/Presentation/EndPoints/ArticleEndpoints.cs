@@ -13,13 +13,13 @@ public static class ArticleEndpoints
 
         ArticleGroup.MapGet("/", (string? tag, string? author, bool? favorited, ArticleService service) =>
     {
-        List<ArticleDTO> articleDTO = service.GetArticle(tag, author, favorited);
+        List<ArticleViewDTO> articleDTO = service.GetArticle(tag, author, favorited);
         return Results.Ok(articleDTO);
     });
 
         ArticleGroup.MapGet("/articles", (ArticleService service) =>
         {
-            List<ArticleDTO> articleDTO = service.GetAll();
+            List<ArticleViewDTO> articleDTO = service.GetAll();
             return Results.Ok(articleDTO);
         });
         ArticleGroup.MapPost("/", (ArticleDTO articleDTO, ArticleService service) =>

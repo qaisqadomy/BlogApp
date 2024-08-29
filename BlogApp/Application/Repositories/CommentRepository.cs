@@ -2,7 +2,6 @@ using Domain.Entities;
 using Domain.Exeptions;
 using Domain.IRepositories;
 using Infrastructure.Data;
-using Microsoft.EntityFrameworkCore;
 
 namespace Application.Repositories;
 
@@ -15,7 +14,7 @@ public class CommentRepository : ICommentRepository
     }
     public List<Comment> GetAll(){
         List<Comment> list = [.. context.Comments];
-        if(list == null){return new List<Comment>();}
+        if(list == null){return [];}
         else {return list;}
     }
     public void AddComment(Comment comment)
@@ -27,7 +26,7 @@ public class CommentRepository : ICommentRepository
     public void DeleteComment(int id)
     {
         Comment c = context.Comments.FirstOrDefault(c => c.Id == id)!;
-        if (c == null) { throw new NotFound(""); }
+        if (c == null) { throw new CommentNotFound($"Comment with the Id : {id} Not Found"); }
         else {context.Comments.Remove(c); context.SaveChanges();}
     }
 }

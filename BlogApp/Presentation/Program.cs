@@ -2,12 +2,15 @@ using System.Text;
 using Application.Repositories;
 using Application.Services;
 using Domain.IRepositories;
+using FluentValidation;
 using Infrastructure.Data;
 using LibraryManagment.Middleware;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Presentation.EndPoints;
+using Presentation.Validators;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -47,6 +50,10 @@ builder.Services.AddScoped<UserService>();
 builder.Services.AddScoped<ArticleService>();
 builder.Services.AddScoped<CommentService>();
 
+builder.Services.AddValidatorsFromAssemblyContaining<UserDtoValidator>();
+builder.Services.AddValidatorsFromAssemblyContaining<ArticleDtoValidator>();
+builder.Services.AddValidatorsFromAssemblyContaining<CommentDtoValidator>();
+
 builder.Services.AddAuthorization();
 
 var app = builder.Build();
@@ -56,10 +63,10 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
-    
+
 }
 
-//app.UseMiddleware<ExceptionHandlingMiddleware>();
+app.UseMiddleware<ExceptionHandlingMiddleware>();
 
 app.UseAuthentication();
 app.UseAuthorization();

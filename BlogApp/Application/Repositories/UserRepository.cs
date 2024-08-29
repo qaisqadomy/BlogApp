@@ -34,9 +34,15 @@ public class UserRepository : IUserRepository
         {
             return user;
         }
-        else { throw new NotFound(""); }
+        else { throw new UserNotFound("There is no such a user"); }
     }
+    public List<User> GetByIds(List<int> AuthorId)
+    {
+        List<User> users = [.. context.Users.Where(u => AuthorId.Contains(u.Id))];
+        if (users == null) return [];
+        else return users;
 
+    }
     public string Login(string email, string password)
     {
         User user = context.Users.FirstOrDefault(u => u.Email == email && u.Password == password)!;
@@ -60,15 +66,13 @@ public class UserRepository : IUserRepository
             return new JwtSecurityTokenHandler().WriteToken(token);
 
         }
-        else { throw new InvalidOperation($"User wih the email : {email} not registerd"); }
+        else { throw new NotRegesterd($"User wih the email : {email} not registerd"); }
     }
-
     public void Register(User user)
     {
         context.Users.Add(user);
         context.SaveChanges();
     }
-
     public void Update(User user, string token)
     {
 
@@ -90,6 +94,6 @@ public class UserRepository : IUserRepository
             context.Users.Update(user1);
             context.SaveChanges();
         }
-        else throw new NotFound($"User not found");
+        else throw new UserNotFound("User not found");
     }
 }

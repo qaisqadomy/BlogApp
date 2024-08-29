@@ -30,7 +30,7 @@ public static class UserEndpoint
 
    if (authHeader != null && authHeader.StartsWith("Bearer "))
    {
-     var token = authHeader.Substring("Bearer ".Length).Trim();
+     var token = authHeader["Bearer ".Length..].Trim();
      GetUserDTO user = service.Get(token);
      return Results.Ok(user);
    }
@@ -41,18 +41,10 @@ public static class UserEndpoint
  });
     UserGroup.MapPut("/", [Authorize] (HttpContext context, UserDTO user, UserService service) =>
  {
-   var authHeader = context.Request.Headers["Authorization"].ToString();
-
-   if (authHeader != null && authHeader.StartsWith("Bearer "))
-   {
-     var token = authHeader.Substring("Bearer ".Length).Trim();
+   var authHeader = context.Request.Headers.Authorization.ToString();
+     var token = authHeader["Bearer ".Length..].Trim();
      service.Update(user, token);
      return Results.Ok(user);
-   }
-   else
-   {
-     return Results.Unauthorized();
-   }
  });
   }
 }

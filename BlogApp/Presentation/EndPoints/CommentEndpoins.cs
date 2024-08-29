@@ -12,7 +12,7 @@ public static class CommentEndpoins
 
                 CommentGroup.MapGet("/", (CommentService service) =>
         {
-            List<CommentDTO> list = service.GetAll();
+            List<CommentViewDTO> list = service.GetAll();
             return Results.Ok(list);
         });
                 CommentGroup.MapPost("/", (CommentDTO model,CommentService service) =>
@@ -25,6 +25,5 @@ public static class CommentEndpoins
             service.DeleteComment(id);
             return Results.Ok();
         });
-
     }
 }
