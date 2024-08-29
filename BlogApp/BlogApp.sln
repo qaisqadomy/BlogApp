@@ -1,5 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
+# 
+VisualStudioVersion = 17.5.002.0
+MinimumVisualStudioVersion = 
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Presentation", "Presentation\Presentation.csproj", "{47EC81C0-FE60-4F02-8387-E5E31D08B727}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{B83A2A02-FD02-4D2E-A788-758AEC142E30}"
@@ -9,6 +12,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "Application\Application.csproj", "{E96365C6-22B7-4077-9C6C-AC953EA36262}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{2D370B89-FE8D-4C62-8A27-AEFEA609A8A1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{75FA6478-1624-43DB-893A-73E4F9CF02EF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RepositoriesTests", "Tests\rrr\RepositoriesTests.csproj", "{AC22E4EB-0A6F-4806-AA39-B33A1ACDD129}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -32,11 +39,19 @@ Global
 		{2D370B89-FE8D-4C62-8A27-AEFEA609A8A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2D370B89-FE8D-4C62-8A27-AEFEA609A8A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2D370B89-FE8D-4C62-8A27-AEFEA609A8A1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AC22E4EB-0A6F-4806-AA39-B33A1ACDD129}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC22E4EB-0A6F-4806-AA39-B33A1ACDD129}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC22E4EB-0A6F-4806-AA39-B33A1ACDD129}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC22E4EB-0A6F-4806-AA39-B33A1ACDD129}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{47EC81C0-FE60-4F02-8387-E5E31D08B727} = {B83A2A02-FD02-4D2E-A788-758AEC142E30}
 		{064F0600-9CF1-4513-A4EC-ADCE309B82DE} = {B83A2A02-FD02-4D2E-A788-758AEC142E30}
 		{E96365C6-22B7-4077-9C6C-AC953EA36262} = {B83A2A02-FD02-4D2E-A788-758AEC142E30}
 		{2D370B89-FE8D-4C62-8A27-AEFEA609A8A1} = {B83A2A02-FD02-4D2E-A788-758AEC142E30}
+		{AC22E4EB-0A6F-4806-AA39-B33A1ACDD129} = {75FA6478-1624-43DB-893A-73E4F9CF02EF}
 	EndGlobalSection
 EndGlobal

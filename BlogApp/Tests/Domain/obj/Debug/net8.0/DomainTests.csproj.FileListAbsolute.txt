@@ -1,0 +1,13 @@
+/home/qais/Downloads/BlogAppTask/BlogApp/Tests/Domain/bin/Debug/net8.0/DomainTests.deps.json
+/home/qais/Downloads/BlogAppTask/BlogApp/Tests/Domain/bin/Debug/net8.0/DomainTests.dll
+/home/qais/Downloads/BlogAppTask/BlogApp/Tests/Domain/bin/Debug/net8.0/DomainTests.pdb
+/home/qais/Downloads/BlogAppTask/BlogApp/Tests/Domain/obj/Debug/net8.0/DomainTests.csproj.AssemblyReference.cache
+/home/qais/Downloads/BlogAppTask/BlogApp/Tests/Domain/obj/Debug/net8.0/DomainTests.GeneratedMSBuildEditorConfig.editorconfig
+/home/qais/Downloads/BlogAppTask/BlogApp/Tests/Domain/obj/Debug/net8.0/DomainTests.AssemblyInfoInputs.cache
+/home/qais/Downloads/BlogAppTask/BlogApp/Tests/Domain/obj/Debug/net8.0/DomainTests.AssemblyInfo.cs
+/home/qais/Downloads/BlogAppTask/BlogApp/Tests/Domain/obj/Debug/net8.0/DomainTests.csproj.CoreCompileInputs.cache
+/home/qais/Downloads/BlogAppTask/BlogApp/Tests/Domain/obj/Debug/net8.0/DomainTests.sourcelink.json
+/home/qais/Downloads/BlogAppTask/BlogApp/Tests/Domain/obj/Debug/net8.0/DomainTests.dll
+/home/qais/Downloads/BlogAppTask/BlogApp/Tests/Domain/obj/Debug/net8.0/refint/DomainTests.dll
+/home/qais/Downloads/BlogAppTask/BlogApp/Tests/Domain/obj/Debug/net8.0/DomainTests.pdb
+/home/qais/Downloads/BlogAppTask/BlogApp/Tests/Domain/obj/Debug/net8.0/ref/DomainTests.dll

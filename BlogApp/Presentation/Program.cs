@@ -75,4 +75,4 @@ app.MapArticleEndpoint();
 app.MapUserEndpoint();
 app.MapCommentEndpoint();
 
-app.Run();
+app.Run(); 
