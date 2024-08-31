@@ -85,7 +85,7 @@ public class ArticleService
     }
     public void AddArticle(ArticleDTO art)
     {
-        Article article1 = new Article
+        Article article1 = new()
         {
             Slug = art.Slug,
             Title = art.Title,
@@ -103,7 +103,7 @@ public class ArticleService
     }
     public void UpdateArticle(ArticleDTO art, int id)
     {
-        Article article1 = new Article
+        Article article1 = new()
         {
             Slug = art.Slug,
             Title = art.Title,

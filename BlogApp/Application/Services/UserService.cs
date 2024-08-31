@@ -15,7 +15,7 @@ public class UserService
     public GetUserDTO Get(string token)
     {
         User user = userRepository.Get(token);
-        GetUserDTO userDTO = new GetUserDTO{ UserName = user.UserName , Email = user.Email};
+        GetUserDTO userDTO = new() { UserName = user.UserName , Email = user.Email};
         return userDTO;
     }
 
@@ -26,13 +26,13 @@ public class UserService
 
     public void Register(UserDTO user)
     { 
-        User user1 = new User{ UserName = user.UserName ,Email = user.Email,Password = user.Password};
+        User user1 = new() { UserName = user.UserName ,Email = user.Email,Password = user.Password};
         userRepository.Register(user1);
     }
 
     public void Update(UserDTO user, string token)
     {
-        User user1 = new User{ UserName = user.UserName ,Email = user.Email,Password = user.Password};
+        User user1 = new() { UserName = user.UserName ,Email = user.Email,Password = user.Password};
         userRepository.Update(user1,token);
       
     }

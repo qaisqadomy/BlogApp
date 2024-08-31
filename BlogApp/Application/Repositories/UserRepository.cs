@@ -56,7 +56,7 @@ public class UserRepository : IUserRepository
             };
             var Key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["JWT:Key"]!));
             var signIn = new SigningCredentials(Key, SecurityAlgorithms.HmacSha256);
-            JwtSecurityToken token = new JwtSecurityToken(
+            JwtSecurityToken token = new(
                 configuration["JWT:Issuer"],
                 configuration["JWT:Audience"],
                 claims,
@@ -75,18 +75,15 @@ public class UserRepository : IUserRepository
     }
     public void Update(User user, string token)
     {
-
         if (token != null)
         {
             var handler = new JwtSecurityTokenHandler();
-
             var jwtToken = handler.ReadJwtToken(token);
 
             var claims = jwtToken.Claims;
             string userEmail = claims.FirstOrDefault(c => c.Type == "Email")?.Value!;
             string userName = claims.FirstOrDefault(c => c.Type == "UserName")?.Value!;
-            User user1 = context.Users.FirstOrDefault(u => u.Email == userEmail && u.UserName == userName)!;
-
+            User user1 = context.Users.FirstOrDefault(u => u.Email == userEmail && u.UserName == userName)! ?? throw new UserNotFound("There is no such a user");
             user1.UserName = user.UserName;
             user1.Email = user.Email;
             user1.Password = user.Password;
@@ -94,6 +91,10 @@ public class UserRepository : IUserRepository
             context.Users.Update(user1);
             context.SaveChanges();
         }
-        else throw new UserNotFound("User not found");
+        else
+        {
+            throw new UserNotFound("User not found");
+        }
     }
+
 }

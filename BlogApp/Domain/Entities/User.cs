@@ -12,5 +12,4 @@ public class User
     public string? Bio { get; set; }
     public string? Image { get; set; }
     public bool Following { get; set; }
-
 }

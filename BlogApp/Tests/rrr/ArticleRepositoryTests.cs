@@ -1,114 +1,130 @@
 using Application.Repositories;
 using Domain.Entities;
 using Domain.Exeptions;
-using Microsoft.Extensions.Configuration;
-using Moq;
 
-namespace RepositoriesTests
+
+namespace RepositoriesTests;
+
+public class ArticleRepositoryTests
 {
-    public class ArticleRepositoryTests
+
+    private readonly InMemoryDB _inMemoryDb;
+    private readonly ArticleRepository _articleRepository;
+
+    public ArticleRepositoryTests()
     {
-        private readonly InMemoryDB _inMemoryDb;
-        private readonly ArticleRepository _repository;
-        private readonly UserRepository userRepository;
+        _inMemoryDb = new InMemoryDB();
+        _articleRepository = new ArticleRepository(_inMemoryDb.DbContext);
+    }
 
-        public ArticleRepositoryTests()
-        {
-            _inMemoryDb = new InMemoryDB();
-            _repository = new ArticleRepository(_inMemoryDb.DbContext);
-             var mockConfiguration = new Mock<IConfiguration>();
-            userRepository = new UserRepository(_inMemoryDb.DbContext, mockConfiguration.Object);
-        }
+    [Fact]
+    public void AddArticle_ShouldAddArticleToDatabase()
+    {
+        // Arrange
+        var article = new Article { Title = "Title", Slug = "qais", Description = "qqqqqq", Body = "sasasa", Tags = ["dss"], AuthorId = 0 };
 
-        [Fact]
-        public void AddArticle_ShouldAddArticle()
-        {
-            var article = new Article { Title = "New Test Article", Slug = "qais", Description = "qqqqqq", Body = "sasasa", Tags = ["dss"], AuthorId = 0 };
+        // Act
+        _articleRepository.AddArticle(article);
+        var result = _articleRepository.GetAll();
 
-            _repository.AddArticle(article);
-            
+        // Assert
+        Assert.Single(result);
+        Assert.Equal("Title", result.First().Title);
+    }
 
-            var addedArticle = _inMemoryDb.DbContext.Articles.Find(1);
-            Assert.NotNull(addedArticle);
-            Assert.Equal("New Test Article", addedArticle.Title);
-        }
+    [Fact]
+    public void GetAll_ShouldReturnAllArticles()
+    {
+        // Arrange
+        var article1 = new Article { Title = "Title1", Slug = "qais", Description = "qqqqqq", Body = "sasasa", Tags = ["dss"], AuthorId = 0 };
+        var article2 = new Article { Title = "Title2", Slug = "qais", Description = "qqqqqq", Body = "sasasa", Tags = ["dss"], AuthorId = 0 };
+        _articleRepository.AddArticle(article1);
+        _articleRepository.AddArticle(article2);
 
-        [Fact]
-        public void GetAll_ShouldReturnAllArticles()
-        {
-            var article = new Article { Title = "New Test Article", Slug = "qais", Description = "qqqqqq", Body = "sasasa", Tags = ["dss"], AuthorId = 0 };
+        // Act
+        var result = _articleRepository.GetAll();
 
-            _repository.AddArticle(article);
+        // Assert
+        Assert.NotNull(result);
+        Assert.Equal(2, result.Count);
+        Assert.Contains(result, a => a.Title == "Title1");
+        Assert.Contains(result, a => a.Title == "Title2");
+    }
 
-            var result = _repository.GetAll();
+    [Fact]
+    public void GetArticle_ShouldFilterByTagAuthorFavorited()
+    {
+        // Arrange
+        var user = new User { Id = 1, UserName = "qais", Email = "qais@gmail.com", Password = "123" };
+        _inMemoryDb.DbContext.Users.Add(user);
 
-            Assert.Single(result);
-        }
+        var article1 = new Article { Id = 1, Title = "Article 1", Tags = ["Tech"], AuthorId = 1, Favorited = true, Slug = "qais", Description = "qais", Body = "dsds" };
+        var article2 = new Article { Id = 2, Title = "Article 2", Tags = ["Science"], AuthorId = 1, Favorited = false, Slug = "qais", Description = "qais", Body = "dsds" };
+        _articleRepository.AddArticle(article1);
+        _articleRepository.AddArticle(article2);
 
-        [Fact]
-        public void UpdateArticle_ShouldUpdateArticle()
-        {
-            var article = new Article
-            {
-                Title = "Updated Title",
-                Slug = "qais",
-                Description = "qqqqqq",
-                Body = "sasasa",
-                Tags = ["dss"],
-                AuthorId = 0
-            };
-            _repository.AddArticle(article);
-            _repository.UpdateArticle(article, 1);
+        var result = _articleRepository.GetArticle("Tech", "qais", true);
 
-            var updatedArticle = _inMemoryDb.DbContext.Articles.Find(1);
-            Assert.Equal("Updated Title", updatedArticle!.Title);
-        }
+        Assert.Single(result);
+        Assert.Equal("Article 1", result.First().Title);
+    }
 
-        [Fact]
-        public void DeleteArticle_ShouldDeleteArticle()
-        {
-            var article = new Article { Title = "Title", Slug = "qais", Description = "qqqqqq", Body = "sasasa", Tags = ["dss"], AuthorId = 0 };
-            _inMemoryDb.DbContext.Articles.Add(article);
-            _inMemoryDb.DbContext.SaveChanges();
+    [Fact]
+    public void UpdateArticle_ShouldUpdateExistingArticle()
+    {
+        // Arrange
+        var article = new Article { Title = "Title", Slug = "qais", Description = "qqqqqq", Body = "sasasa", Tags = ["dss"], AuthorId = 0 };
+        _articleRepository.AddArticle(article);
 
-            _repository.DeleteArticle(1);
+        var updatedArticle = new Article { Title = "Updated Title", Slug = "qais", Description = "Updated description", Body = "sasasa", Tags = ["dss"], AuthorId = 0 };
 
-            var deletedArticle = _inMemoryDb.DbContext.Articles.Find(1);
-            Assert.Null(deletedArticle);
-        }
+        // Act
+        _articleRepository.UpdateArticle(updatedArticle, 1);
+        var result = _articleRepository.GetAll().FirstOrDefault(a => a.Id == 1);
 
-        [Fact]
-        public void UpdateArticle_ShouldThrowArticleNotFound_WhenArticleDoesNotExist()
-        {
-            var article = new Article { Title = "Title", Slug = "qais", Description = "qqqqqq", Body = "sasasa", Tags = ["dss"], AuthorId = 0 };
-            Assert.Throws<ArticleNotFound>(() => _repository.UpdateArticle(article, 1));
-        }
+        // Assert
+        Assert.NotNull(result);
+        Assert.Equal("Updated Title", result.Title);
+        Assert.Equal("Updated description", result.Description);
+    }
 
-        [Fact]
-        public void DeleteArticle_ShouldThrowArticleNotFound_WhenArticleDoesNotExist()
-        {
-            Assert.Throws<ArticleNotFound>(() => _repository.DeleteArticle(1));
-        }
-        [Fact]
-        public void GetArticle_NoFilters_ReturnsAllArticles()
-        {
-            
-            var result = _repository.GetArticle(null, null, null);
+    [Fact]
+    public void UpdateArticle_ShouldThrowExceptionWhenArticleNotFound()
+    {
+        // Arrange
+        var updatedArticle = new Article { Title = "Title", Slug = "qais", Description = "qqqqqq", Body = "sasasa", Tags = ["dss"], AuthorId = 0 };
 
-            
-            Assert.Empty(result);
-        }
+        // Act & Assert
+        var exception = Assert.Throws<ArticleNotFound>(() => _articleRepository.UpdateArticle(updatedArticle, 999));
+        Assert.Equal("article with the Id : 999 not found", exception.Message);
+    }
 
-        [Fact]
-        public void GetArticle_NonExistentAuthor_ReturnsEmptyList()
-        {
-            
-            var result = _repository.GetArticle(null, "nonexistent", null);
+    [Fact]
+    public void DeleteArticle_ShouldRemoveArticleFromDatabase()
+    {
+        // Arrange
+        var article = new Article { Title = "Title", Slug = "qais", Description = "qqqqqq", Body = "sasasa", Tags = ["dss"], AuthorId = 0 };
+        _articleRepository.AddArticle(article);
 
-            
-            Assert.Empty(result);
-        }
+        // Act
+        _articleRepository.DeleteArticle(1);
+        var result = _articleRepository.GetAll();
 
+        // Assert
+        Assert.Empty(result);
+    }
+
+    [Fact]
+    public void DeleteArticle_ShouldThrowExceptionWhenArticleNotFound()
+    {
+        // Act & Assert
+        var exception = Assert.Throws<ArticleNotFound>(() => _articleRepository.DeleteArticle(999));
+        Assert.Equal("article with the Id : 999 not found", exception.Message);
+    }
+
+    public void Dispose()
+    {
+        _inMemoryDb.Dispose();
     }
 }
 
