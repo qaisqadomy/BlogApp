@@ -46,7 +46,7 @@ public class CommentService
 
     public void AddComment(CommentDTO comment)
     {
-        Comment comment1 = new Comment
+        Comment comment1 = new()
         {
             Body = comment.Body,
             CreatedAt = comment.CreatedAt,

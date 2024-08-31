@@ -1,36 +1,39 @@
 {
   "format": 1,
   "restore": {
-    "/home/qais/Downloads/BlogAppTask/BlogApp/Tests/rrr/RepositoriesTests.csproj": {}
+    "C:\\Users\\qadom\\Downloads\\BlogAppTask\\BlogApp\\Tests\\rrr\\RepositoriesTests.csproj": {}
   },
   "projects": {
-    "/home/qais/Downloads/BlogAppTask/BlogApp/Application/Application.csproj": {
+    "C:\\Users\\qadom\\Downloads\\BlogAppTask\\BlogApp\\Application\\Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/qais/Downloads/BlogAppTask/BlogApp/Application/Application.csproj",
+        "projectUniqueName": "C:\\Users\\qadom\\Downloads\\BlogAppTask\\BlogApp\\Application\\Application.csproj",
         "projectName": "Application",
-        "projectPath": "/home/qais/Downloads/BlogAppTask/BlogApp/Application/Application.csproj",
-        "packagesPath": "/home/qais/.nuget/packages/",
-        "outputPath": "/home/qais/Downloads/BlogAppTask/BlogApp/Application/obj/",
+        "projectPath": "C:\\Users\\qadom\\Downloads\\BlogAppTask\\BlogApp\\Application\\Application.csproj",
+        "packagesPath": "C:\\Users\\qadom\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\qadom\\Downloads\\BlogAppTask\\BlogApp\\Application\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/qais/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\qadom\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "/home/qais/Downloads/BlogAppTask/BlogApp/Domain/Domain.csproj": {
-                "projectPath": "/home/qais/Downloads/BlogAppTask/BlogApp/Domain/Domain.csproj"
+              "C:\\Users\\qadom\\Downloads\\BlogAppTask\\BlogApp\\Domain\\Domain.csproj": {
+                "projectPath": "C:\\Users\\qadom\\Downloads\\BlogAppTask\\BlogApp\\Domain\\Domain.csproj"
               },
-              "/home/qais/Downloads/BlogAppTask/BlogApp/Infrastructure/Infrastructure.csproj": {
-                "projectPath": "/home/qais/Downloads/BlogAppTask/BlogApp/Infrastructure/Infrastructure.csproj"
+              "C:\\Users\\qadom\\Downloads\\BlogAppTask\\BlogApp\\Infrastructure\\Infrastructure.csproj": {
+                "projectPath": "C:\\Users\\qadom\\Downloads\\BlogAppTask\\BlogApp\\Infrastructure\\Infrastructure.csproj"
               }
             }
           }
@@ -75,26 +78,29 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/8.0.401/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.303/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "/home/qais/Downloads/BlogAppTask/BlogApp/Domain/Domain.csproj": {
+    "C:\\Users\\qadom\\Downloads\\BlogAppTask\\BlogApp\\Domain\\Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/qais/Downloads/BlogAppTask/BlogApp/Domain/Domain.csproj",
+        "projectUniqueName": "C:\\Users\\qadom\\Downloads\\BlogAppTask\\BlogApp\\Domain\\Domain.csproj",
         "projectName": "Domain",
-        "projectPath": "/home/qais/Downloads/BlogAppTask/BlogApp/Domain/Domain.csproj",
-        "packagesPath": "/home/qais/.nuget/packages/",
-        "outputPath": "/home/qais/Downloads/BlogAppTask/BlogApp/Domain/obj/",
+        "projectPath": "C:\\Users\\qadom\\Downloads\\BlogAppTask\\BlogApp\\Domain\\Domain.csproj",
+        "packagesPath": "C:\\Users\\qadom\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\qadom\\Downloads\\BlogAppTask\\BlogApp\\Domain\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/qais/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\qadom\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -139,34 +145,37 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/8.0.401/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.303/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "/home/qais/Downloads/BlogAppTask/BlogApp/Infrastructure/Infrastructure.csproj": {
+    "C:\\Users\\qadom\\Downloads\\BlogAppTask\\BlogApp\\Infrastructure\\Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/qais/Downloads/BlogAppTask/BlogApp/Infrastructure/Infrastructure.csproj",
+        "projectUniqueName": "C:\\Users\\qadom\\Downloads\\BlogAppTask\\BlogApp\\Infrastructure\\Infrastructure.csproj",
         "projectName": "Infrastructure",
-        "projectPath": "/home/qais/Downloads/BlogAppTask/BlogApp/Infrastructure/Infrastructure.csproj",
-        "packagesPath": "/home/qais/.nuget/packages/",
-        "outputPath": "/home/qais/Downloads/BlogAppTask/BlogApp/Infrastructure/obj/",
+        "projectPath": "C:\\Users\\qadom\\Downloads\\BlogAppTask\\BlogApp\\Infrastructure\\Infrastructure.csproj",
+        "packagesPath": "C:\\Users\\qadom\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\qadom\\Downloads\\BlogAppTask\\BlogApp\\Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/qais/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\qadom\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "/home/qais/Downloads/BlogAppTask/BlogApp/Domain/Domain.csproj": {
-                "projectPath": "/home/qais/Downloads/BlogAppTask/BlogApp/Domain/Domain.csproj"
+              "C:\\Users\\qadom\\Downloads\\BlogAppTask\\BlogApp\\Domain\\Domain.csproj": {
+                "projectPath": "C:\\Users\\qadom\\Downloads\\BlogAppTask\\BlogApp\\Domain\\Domain.csproj"
               }
             }
           }
@@ -221,40 +230,43 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/8.0.401/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.303/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "/home/qais/Downloads/BlogAppTask/BlogApp/Tests/rrr/RepositoriesTests.csproj": {
+    "C:\\Users\\qadom\\Downloads\\BlogAppTask\\BlogApp\\Tests\\rrr\\RepositoriesTests.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/qais/Downloads/BlogAppTask/BlogApp/Tests/rrr/RepositoriesTests.csproj",
+        "projectUniqueName": "C:\\Users\\qadom\\Downloads\\BlogAppTask\\BlogApp\\Tests\\rrr\\RepositoriesTests.csproj",
         "projectName": "RepositoriesTests",
-        "projectPath": "/home/qais/Downloads/BlogAppTask/BlogApp/Tests/rrr/RepositoriesTests.csproj",
-        "packagesPath": "/home/qais/.nuget/packages/",
-        "outputPath": "/home/qais/Downloads/BlogAppTask/BlogApp/Tests/rrr/obj/",
+        "projectPath": "C:\\Users\\qadom\\Downloads\\BlogAppTask\\BlogApp\\Tests\\rrr\\RepositoriesTests.csproj",
+        "packagesPath": "C:\\Users\\qadom\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\qadom\\Downloads\\BlogAppTask\\BlogApp\\Tests\\rrr\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/qais/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\qadom\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "/home/qais/Downloads/BlogAppTask/BlogApp/Application/Application.csproj": {
-                "projectPath": "/home/qais/Downloads/BlogAppTask/BlogApp/Application/Application.csproj"
+              "C:\\Users\\qadom\\Downloads\\BlogAppTask\\BlogApp\\Application\\Application.csproj": {
+                "projectPath": "C:\\Users\\qadom\\Downloads\\BlogAppTask\\BlogApp\\Application\\Application.csproj"
               },
-              "/home/qais/Downloads/BlogAppTask/BlogApp/Domain/Domain.csproj": {
-                "projectPath": "/home/qais/Downloads/BlogAppTask/BlogApp/Domain/Domain.csproj"
+              "C:\\Users\\qadom\\Downloads\\BlogAppTask\\BlogApp\\Domain\\Domain.csproj": {
+                "projectPath": "C:\\Users\\qadom\\Downloads\\BlogAppTask\\BlogApp\\Domain\\Domain.csproj"
               },
-              "/home/qais/Downloads/BlogAppTask/BlogApp/Infrastructure/Infrastructure.csproj": {
-                "projectPath": "/home/qais/Downloads/BlogAppTask/BlogApp/Infrastructure/Infrastructure.csproj"
+              "C:\\Users\\qadom\\Downloads\\BlogAppTask\\BlogApp\\Infrastructure\\Infrastructure.csproj": {
+                "projectPath": "C:\\Users\\qadom\\Downloads\\BlogAppTask\\BlogApp\\Infrastructure\\Infrastructure.csproj"
               }
             }
           }
@@ -317,7 +329,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/8.0.401/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.303/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

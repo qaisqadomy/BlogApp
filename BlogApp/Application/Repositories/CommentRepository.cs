@@ -12,10 +12,11 @@ public class CommentRepository : ICommentRepository
     {
         this.context = context;
     }
-    public List<Comment> GetAll(){
+    public List<Comment> GetAll()
+    {
         List<Comment> list = [.. context.Comments];
-        if(list == null){return [];}
-        else {return list;}
+        if (list == null) { return []; }
+        else { return list; }
     }
     public void AddComment(Comment comment)
     {
@@ -27,6 +28,6 @@ public class CommentRepository : ICommentRepository
     {
         Comment c = context.Comments.FirstOrDefault(c => c.Id == id)!;
         if (c == null) { throw new CommentNotFound($"Comment with the Id : {id} Not Found"); }
-        else {context.Comments.Remove(c); context.SaveChanges();}
+        else { context.Comments.Remove(c); context.SaveChanges(); }
     }
 }
