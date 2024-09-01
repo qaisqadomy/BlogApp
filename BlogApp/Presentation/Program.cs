@@ -4,8 +4,8 @@ using Application.Services;
 using Domain.IRepositories;
 using FluentValidation;
 using Infrastructure.Data;
-using LibraryManagment.Middleware;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Presentation.EndPoints;
@@ -66,7 +66,7 @@ if (app.Environment.IsDevelopment())
 
 }
 
-app.UseMiddleware<ExceptionHandlingMiddleware>();
+app.UseMiddleware<ExceptionHandlerMiddleware>();
 
 app.UseAuthentication();
 app.UseAuthorization();

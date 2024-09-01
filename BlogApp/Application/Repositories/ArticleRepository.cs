@@ -5,13 +5,10 @@ using Infrastructure.Data;
 
 namespace Application.Repositories;
 
-public class ArticleRepository : IArticleRepository
+public class ArticleRepository(AppDbContext context) : IArticleRepository
 {
-    private readonly AppDbContext context;
-    public ArticleRepository(AppDbContext context)
-    {
-        this.context = context;
-    }
+    private readonly AppDbContext context = context;
+
     public void AddArticle(Article article)
     {
         context.Articles.Add(article);

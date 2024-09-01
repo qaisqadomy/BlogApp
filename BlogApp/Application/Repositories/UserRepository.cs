@@ -10,15 +10,10 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace Application.Repositories;
 
-public class UserRepository : IUserRepository
+public class UserRepository(AppDbContext context, IConfiguration configuration) : IUserRepository
 {
-    private readonly AppDbContext context;
-    private readonly IConfiguration configuration;
-    public UserRepository(AppDbContext context, IConfiguration configuration)
-    {
-        this.configuration = configuration;
-        this.context = context;
-    }
+    private readonly AppDbContext context = context;
+    private readonly IConfiguration configuration = configuration;
 
     public User Get(string token)
     {

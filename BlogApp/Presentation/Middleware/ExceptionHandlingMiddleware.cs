@@ -1,17 +1,12 @@
 using Domain.Exeptions;
 
-namespace LibraryManagment.Middleware;
+namespace Presentation.Middleware;
 
-public class ExceptionHandlingMiddleware
+public class ExceptionHandlingMiddleware(RequestDelegate next, ILogger<ExceptionHandlingMiddleware> logger)
 {
 
-    private readonly RequestDelegate _next;
-    private readonly ILogger<ExceptionHandlingMiddleware> _logger;
-     public ExceptionHandlingMiddleware(RequestDelegate next, ILogger<ExceptionHandlingMiddleware> logger)
-    {
-        _next = next;
-        _logger = logger;
-    }
+    private readonly RequestDelegate _next = next;
+    private readonly ILogger<ExceptionHandlingMiddleware> _logger = logger;
 
     public async Task InvokeAsync(HttpContext context)
     {
@@ -31,10 +26,10 @@ public class ExceptionHandlingMiddleware
             context.Response.StatusCode = StatusCodes.Status400BadRequest;
             await context.Response.WriteAsync(ex.Message);
         }
-          catch (BadHttpRequestException ex)
+        catch (BadHttpRequestException ex)
         {
             _logger.LogError(ex, "Failed to read parameter from the request body as JSON");
-            
+
             context.Response.StatusCode = StatusCodes.Status400BadRequest;
             context.Response.ContentType = "application/json";
 

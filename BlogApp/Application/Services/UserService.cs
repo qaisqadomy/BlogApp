@@ -4,13 +4,9 @@ using Domain.IRepositories;
 
 namespace Application.Services;
 
-public class UserService
+public class UserService(IUserRepository userRepository)
 {
-    private readonly IUserRepository userRepository;
-    public UserService(IUserRepository userRepository)
-    {
-        this.userRepository = userRepository;
-    }
+    private readonly IUserRepository userRepository = userRepository;
 
     public GetUserDTO Get(string token)
     {

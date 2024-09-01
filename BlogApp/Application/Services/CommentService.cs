@@ -4,17 +4,12 @@ using Domain.IRepositories;
 
 namespace Application.Services;
 
-public class CommentService
+public class CommentService(ICommentRepository commentRepository, IUserRepository userRepository)
 {
-    private readonly ICommentRepository commentRepository;
-    private readonly IUserRepository userRepository;
+    private readonly ICommentRepository commentRepository = commentRepository;
+    private readonly IUserRepository userRepository = userRepository;
 
-    public CommentService(ICommentRepository commentRepository,IUserRepository userRepository)
-    {
-        this.commentRepository = commentRepository;
-        this.userRepository =userRepository;
-    }
-   public List<CommentViewDTO> GetAll()
+    public List<CommentViewDTO> GetAll()
 {
     List<Comment> comments = commentRepository.GetAll();
 

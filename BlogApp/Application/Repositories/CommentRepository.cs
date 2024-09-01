@@ -5,13 +5,10 @@ using Infrastructure.Data;
 
 namespace Application.Repositories;
 
-public class CommentRepository : ICommentRepository
+public class CommentRepository(AppDbContext context) : ICommentRepository
 {
-    private readonly AppDbContext context;
-    public CommentRepository(AppDbContext context)
-    {
-        this.context = context;
-    }
+    private readonly AppDbContext context = context;
+
     public List<Comment> GetAll()
     {
         List<Comment> list = [.. context.Comments];

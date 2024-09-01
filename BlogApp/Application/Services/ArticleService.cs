@@ -4,16 +4,11 @@ using Domain.IRepositories;
 
 namespace Application.Services;
 
-public class ArticleService
+public class ArticleService(IArticleRepository articleRepository, IUserRepository userRepository)
 {
-    private readonly IArticleRepository articleRepository;
-    private readonly IUserRepository userRepository;
-    public ArticleService(IArticleRepository articleRepository, IUserRepository userRepository)
-    {
-        this.articleRepository = articleRepository;
-        this.userRepository = userRepository;
+    private readonly IArticleRepository articleRepository = articleRepository;
+    private readonly IUserRepository userRepository = userRepository;
 
-    }
     public List<ArticleViewDTO> GetAll()
     {
         List<Article> articles = articleRepository.GetAll();
