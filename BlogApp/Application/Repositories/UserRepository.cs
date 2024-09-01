@@ -41,7 +41,6 @@ public class UserRepository : IUserRepository
         List<User> users = [.. context.Users.Where(u => AuthorId.Contains(u.Id))];
         if (users == null) return [];
         else return users;
-
     }
     public string Login(string email, string password)
     {

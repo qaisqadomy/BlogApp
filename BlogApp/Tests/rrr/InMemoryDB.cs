@@ -16,9 +16,5 @@ public class InMemoryDB
 
         DbContext = new AppDbContext(options);
     }
-    public void Dispose()
-    {
-        DbContext.Dispose();
-    }
 }
 

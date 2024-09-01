@@ -33,58 +33,58 @@ public class UserRepositoryTests
     public void Register_ShouldAddUserToDatabase()
     {
 
-        var user = new User { UserName = "john_doe", Email = "john@example.com", Password = "password123", Bio = "qqq", Image = "dsadsad", Following = false };
+        User user = new User { UserName = "qais", Email = "qais@gmail.com", Password = "password123", Bio = "qqq", Image = "dsadsad", Following = false };
 
 
         _userRepository.Register(user);
-        var result = _inMemoryDb.DbContext.Users.FirstOrDefault(u => u.Email == "john@example.com");
+        User result = _inMemoryDb.DbContext.Users.FirstOrDefault(u => u.Email == "qais@gmail.com")!;
 
 
         Assert.NotNull(result);
-        Assert.Equal("john_doe", result.UserName);
+        Assert.Equal("qais", result.UserName);
     }
 
     [Fact]
     public void Login_ShouldReturnJwtTokenForValidUser()
     {
 
-        var user = new User { UserName = "john_doe", Email = "john@example.com", Password = "password123" };
+        var user = new User { UserName = "qais", Email = "qais@gmail.com", Password = "password123" };
         _userRepository.Register(user);
 
 
-        var token = _userRepository.Login("john@example.com", "password123");
+        var token = _userRepository.Login("qais@gmail.com", "password123");
 
 
         Assert.NotNull(token);
         var handler = new JwtSecurityTokenHandler();
         var jwtToken = handler.ReadJwtToken(token);
-        Assert.Equal("john@example.com", jwtToken.Claims.First(c => c.Type == "Email").Value);
+        Assert.Equal("qais@gmail.com", jwtToken.Claims.First(c => c.Type == "Email").Value);
     }
 
     [Fact]
     public void Login_ShouldThrowExceptionForInvalidUser()
     {
 
-        var exception = Assert.Throws<NotRegesterd>(() => _userRepository.Login("invalid@example.com", "wrongpassword"));
-        Assert.Equal("User wih the email : invalid@example.com not registerd", exception.Message);
+        var exception = Assert.Throws<NotRegesterd>(() => _userRepository.Login("qais@gmail.com", "wrongpassword"));
+        Assert.Equal("User wih the email : qais@gmail.com not registerd", exception.Message);
     }
 
     [Fact]
     public void Get_ShouldReturnUserForValidToken()
     {
 
-        var user = new User { UserName = "john_doe", Email = "john@example.com", Password = "password123" };
+        var user = new User { UserName = "qais", Email = "qais@gmail.com", Password = "password123" };
         _userRepository.Register(user);
 
-        var token = _userRepository.Login("john@example.com", "password123");
+        var token = _userRepository.Login("qais@gmail.com", "password123");
 
 
         var result = _userRepository.Get(token);
 
 
         Assert.NotNull(result);
-        Assert.Equal("john_doe", result.UserName);
-        Assert.Equal("john@example.com", result.Email);
+        Assert.Equal("qais", result.UserName);
+        Assert.Equal("qais@gmail.com", result.Email);
     }
 
     [Fact]
@@ -118,33 +118,42 @@ public class UserRepositoryTests
     public void Update_ShouldUpdateUserDetails()
     {
 
-        var user = new User { UserName = "john_doe", Email = "john@example.com", Password = "password123" };
+        var user = new User { UserName = "qais@gmail.com", Email = "qais@gmail.com", Password = "password123" };
         _userRepository.Register(user);
 
-        var token = _userRepository.Login("john@example.com", "password123");
+        var token = _userRepository.Login("qais@gmail.com", "password123");
 
-        var updatedUser = new User { UserName = "john_updated", Email = "john_updated@example.com", Password = "newpassword123" };
+        var updatedUser = new User { UserName = "qaisn", Email = "qaisn@gmail.com", Password = "newpassword123" };
 
 
         _userRepository.Update(updatedUser, token);
 
 
-        var newToken = _userRepository.Login("john_updated@example.com", "newpassword123");
+        var newToken = _userRepository.Login("qaisn@gmail.com", "newpassword123");
 
         var result = _userRepository.Get(newToken);
 
 
         Assert.NotNull(result);
-        Assert.Equal("john_updated", result.UserName);
-        Assert.Equal("john_updated@example.com", result.Email);
+        Assert.Equal("qaisn", result.UserName);
+        Assert.Equal("qaisn@gmail.com", result.Email);
         Assert.Equal("newpassword123", result.Password);
     }
+    [Fact]
+        public void Update_ShouldThrowExceptionWhenTokenIsNull()
+        {
+            
+            var user = new User { UserName = "qais", Email = "qais@example.com", Password = "newpassword123" };
 
+            
+            var exception = Assert.Throws<UserNotFound>(() => _userRepository.Update(user, null));
+            Assert.Equal("User not found", exception.Message);
+        }
 
     [Fact]
     public void Update_ShouldThrowExceptionWhenUserNotFound()
     {
-        // Arrange: Create a valid JWT with claims that do not correspond to any existing user
+       
         var invalidClaims = new[]
         {
         new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
@@ -164,18 +173,33 @@ public class UserRepositoryTests
 
         var tokenString = new JwtSecurityTokenHandler().WriteToken(token);
 
-        var updatedUser = new User { UserName = "john_updated", Email = "john_updated@example.com", Password = "newpassword123" };
+        var updatedUser = new User { UserName = "qaisn", Email = "qaisn@gmail.com", Password = "newpassword123" };
 
-        // Act & Assert: Expect UserNotFound exception when updating with a non-existent user
         var exception = Assert.Throws<UserNotFound>(() => _userRepository.Update(updatedUser, tokenString));
         Assert.Equal("There is no such a user", exception.Message);
     }
 
+        [Fact]
+        public void GetByIds_ShouldReturnUsersForValidIds()
+        {
+            var user1 = new User { Id = 1, UserName = "user1",Password="123", Email = "user1@example.com" };
+            var user2 = new User { Id = 2, UserName = "user2",Password="123", Email = "user2@example.com" };
+            _userRepository.Register(user1);
+            _userRepository.Register(user2);
 
+            var result = _userRepository.GetByIds([1, 2]);
 
-    public void Dispose()
-    {
-        _inMemoryDb.Dispose();
-    }
+            Assert.Equal(2, result.Count);
+            Assert.Contains(result, u => u.Id == 1);
+            Assert.Contains(result, u => u.Id == 2);
+        }
+
+        [Fact]
+        public void GetByIds_ShouldReturnEmptyListForInvalidIds()
+        {
+            var result = _userRepository.GetByIds([999]);
+
+            Assert.Empty(result);
+        }
 
 }

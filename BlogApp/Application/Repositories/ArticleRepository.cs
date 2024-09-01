@@ -29,15 +29,8 @@ public class ArticleRepository : IArticleRepository
         if (!string.IsNullOrEmpty(author))
         {
             var user = context.Users.FirstOrDefault(u => u.UserName == author);
-
-            if (user != null)
-            {
                 query = query.Where(a => a.AuthorId == user.Id);
-            }
-            else
-            {
-                return [];
-            }
+            
         }
         if (!string.IsNullOrEmpty(tag))
         {
