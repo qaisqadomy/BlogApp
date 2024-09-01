@@ -17,20 +17,33 @@ public class UserRepository(AppDbContext context, IConfiguration configuration) 
 
     public User Get(string token)
     {
+        if (string.IsNullOrEmpty(token))
+        {
+            throw new InvalidToken("Provided token is invalid");
+        }
+
         var handler = new JwtSecurityTokenHandler();
 
-        var jwtToken = handler.ReadJwtToken(token);
+        if (!handler.CanReadToken(token))
+        {
+            throw new InvalidToken("Token cannot be read");
+        }
 
-        var claims = jwtToken.Claims;
+        JwtSecurityToken jwtToken = jwtToken = handler.ReadJwtToken(token);
+
+        var claims = jwtToken.Claims.ToList();
         string userEmail = claims.FirstOrDefault(c => c.Type == "Email")?.Value!;
         string userName = claims.FirstOrDefault(c => c.Type == "UserName")?.Value!;
-        User user = context.Users.FirstOrDefault(u => u.Email == userEmail && u.UserName == userName)!;
-        if (user != null)
+
+        if (string.IsNullOrEmpty(userEmail) || string.IsNullOrEmpty(userName))
         {
-            return user;
+            throw new InvalidToken("Token does not contain required claims");
         }
-        else { throw new UserNotFound("There is no such a user"); }
+
+        User user = context.Users.FirstOrDefault(u => u.Email == userEmail && u.UserName == userName)! ?? throw new UserNotFound("There is no such user");
+        return user;
     }
+
     public List<User> GetByIds(List<int> AuthorId)
     {
         List<User> users = [.. context.Users.Where(u => AuthorId.Contains(u.Id))];
@@ -58,7 +71,6 @@ public class UserRepository(AppDbContext context, IConfiguration configuration) 
                 signingCredentials: signIn
             );
             return new JwtSecurityTokenHandler().WriteToken(token);
-
         }
         else { throw new NotRegesterd($"User wih the email : {email} not registerd"); }
     }
@@ -87,7 +99,7 @@ public class UserRepository(AppDbContext context, IConfiguration configuration) 
         }
         else
         {
-            throw new UserNotFound("User not found");
+            throw new InvalidToken("provided token is invalid");
         }
     }
 

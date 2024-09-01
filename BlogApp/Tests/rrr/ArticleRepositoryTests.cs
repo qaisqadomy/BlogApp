@@ -2,7 +2,6 @@ using Application.Repositories;
 using Domain.Entities;
 using Domain.Exeptions;
 
-
 namespace RepositoriesTests;
 
 public class ArticleRepositoryTests
@@ -20,13 +19,18 @@ public class ArticleRepositoryTests
     [Fact]
     public void AddArticle_ShouldAddArticleToDatabase()
     {
-
-        Article article = new Article { Title = "Title", Slug = "qais", Description = "qqqqqq", Body = "sasasa", Tags = ["dss"], AuthorId = 0 };
-
+        var article = new Article
+        {
+            Title = "Title",
+            Slug = "qais",
+            Description = "qqqqqq",
+            Body = "sasasa",
+            Tags = new List<string> { "dss" },
+            AuthorId = 0
+        };
 
         _articleRepository.AddArticle(article);
-        List<Article> result = _articleRepository.GetAll();
-
+        var result = _articleRepository.GetAll();
 
         Assert.Single(result);
         Assert.Equal("Title", result.First().Title);
@@ -35,15 +39,30 @@ public class ArticleRepositoryTests
     [Fact]
     public void GetAll_ShouldReturnAllArticles()
     {
+        var article1 = new Article
+        {
+            Title = "Title1",
+            Slug = "qais",
+            Description = "qqqqqq",
+            Body = "sasasa",
+            Tags = new List<string> { "dss" },
+            AuthorId = 0
+        };
 
-        Article article1 = new Article { Title = "Title1", Slug = "qais", Description = "qqqqqq", Body = "sasasa", Tags = ["dss"], AuthorId = 0 };
-        Article article2 = new Article { Title = "Title2", Slug = "qais", Description = "qqqqqq", Body = "sasasa", Tags = ["dss"], AuthorId = 0 };
+        var article2 = new Article
+        {
+            Title = "Title2",
+            Slug = "qais",
+            Description = "qqqqqq",
+            Body = "sasasa",
+            Tags = new List<string> { "dss" },
+            AuthorId = 0
+        };
+
         _articleRepository.AddArticle(article1);
         _articleRepository.AddArticle(article2);
 
-
-        List<Article> result = _articleRepository.GetAll();
-
+        var result = _articleRepository.GetAll();
 
         Assert.NotNull(result);
         Assert.Equal(2, result.Count);
@@ -54,12 +73,40 @@ public class ArticleRepositoryTests
     [Fact]
     public void GetArticle_ShouldFilterByTagAuthorFavorited()
     {
+        var user = new User
+        {
+            Id = 1,
+            UserName = "qais",
+            Email = "qais@gmail.com",
+            Password = "123"
+        };
 
-        User user = new User { Id = 1, UserName = "qais", Email = "qais@gmail.com", Password = "123" };
         _inMemoryDb.DbContext.Users.Add(user);
 
-        Article article1 = new Article { Id = 1, Title = "Article 1", Tags = ["Tech"], AuthorId = 1, Favorited = true, Slug = "qais", Description = "qais", Body = "dsds" };
-        Article article2 = new Article { Id = 2, Title = "Article 2", Tags = ["Science"], AuthorId = 1, Favorited = false, Slug = "qais", Description = "qais", Body = "dsds" };
+        var article1 = new Article
+        {
+            Id = 1,
+            Title = "Article 1",
+            Tags = new List<string> { "Tech" },
+            AuthorId = 1,
+            Favorited = true,
+            Slug = "qais",
+            Description = "qais",
+            Body = "dsds"
+        };
+
+        var article2 = new Article
+        {
+            Id = 2,
+            Title = "Article 2",
+            Tags = new List<string> { "Science" },
+            AuthorId = 1,
+            Favorited = false,
+            Slug = "qais",
+            Description = "qais",
+            Body = "dsds"
+        };
+
         _articleRepository.AddArticle(article1);
         _articleRepository.AddArticle(article2);
 
@@ -72,16 +119,30 @@ public class ArticleRepositoryTests
     [Fact]
     public void UpdateArticle_ShouldUpdateExistingArticle()
     {
+        var article = new Article
+        {
+            Title = "Title",
+            Slug = "qais",
+            Description = "qqqqqq",
+            Body = "sasasa",
+            Tags = new List<string> { "dss" },
+            AuthorId = 0
+        };
 
-        Article article = new Article { Title = "Title", Slug = "qais", Description = "qqqqqq", Body = "sasasa", Tags = ["dss"], AuthorId = 0 };
         _articleRepository.AddArticle(article);
 
-        Article updatedArticle = new Article { Title = "Updated Title", Slug = "qais", Description = "Updated description", Body = "sasasa", Tags = ["dss"], AuthorId = 0 };
-
+        var updatedArticle = new Article
+        {
+            Title = "Updated Title",
+            Slug = "qais",
+            Description = "Updated description",
+            Body = "sasasa",
+            Tags = new List<string> { "dss" },
+            AuthorId = 0
+        };
 
         _articleRepository.UpdateArticle(updatedArticle, 1);
-        Article result = _articleRepository.GetAll().FirstOrDefault(a => a.Id == 1)!;
-
+        var result = _articleRepository.GetAll().FirstOrDefault(a => a.Id == 1);
 
         Assert.NotNull(result);
         Assert.Equal("Updated Title", result.Title);
@@ -91,23 +152,43 @@ public class ArticleRepositoryTests
     [Fact]
     public void UpdateArticle_ShouldThrowExceptionWhenArticleNotFound()
     {
-        Article updatedArticle = new Article { Title = "Title", Slug = "qais", Description = "qqqqqq", Body = "sasasa", Tags = ["dss"], AuthorId = 0 };
+        var updatedArticle = new Article
+        {
+            Title = "Title",
+            Slug = "qais",
+            Description = "qqqqqq",
+            Body = "sasasa",
+            Tags = new List<string> { "dss" },
+            AuthorId = 0
+        };
 
-        Exception exception = Assert.Throws<ArticleNotFound>(() => _articleRepository.UpdateArticle(updatedArticle, 999));
+        var exception = Assert.Throws<ArticleNotFound>(() => _articleRepository.UpdateArticle(updatedArticle, 999));
         Assert.Equal("article with the Id : 999 not found", exception.Message);
+    }
+    [Fact]
+    public void GetArticle_ShouldThrowArticleNotFound_WhenNoArticlesMatch()
+    {
+        var exception = Assert.Throws<ArticleNotFound>(() => _articleRepository.GetArticle(tag: "NonExistingTag", author: null, favorited: null));
+        Assert.Equal("Articles not found", exception.Message);
     }
 
     [Fact]
     public void DeleteArticle_ShouldRemoveArticleFromDatabase()
     {
+        var article = new Article
+        {
+            Title = "Title",
+            Slug = "qais",
+            Description = "qqqqqq",
+            Body = "sasasa",
+            Tags = new List<string> { "dss" },
+            AuthorId = 0
+        };
 
-        Article article = new Article { Title = "Title", Slug = "qais", Description = "qqqqqq", Body = "sasasa", Tags = ["dss"], AuthorId = 0 };
         _articleRepository.AddArticle(article);
 
-
         _articleRepository.DeleteArticle(1);
-        List<Article> result = _articleRepository.GetAll();
-
+        var result = _articleRepository.GetAll();
 
         Assert.Empty(result);
     }
@@ -115,7 +196,7 @@ public class ArticleRepositoryTests
     [Fact]
     public void DeleteArticle_ShouldThrowExceptionWhenArticleNotFound()
     {
-        Exception exception = Assert.Throws<ArticleNotFound>(() => _articleRepository.DeleteArticle(999));
+        var exception = Assert.Throws<ArticleNotFound>(() => _articleRepository.DeleteArticle(999));
         Assert.Equal("article with the Id : 999 not found", exception.Message);
     }
 }

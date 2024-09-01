@@ -5,11 +5,11 @@ using Domain.IRepositories;
 using FluentValidation;
 using Infrastructure.Data;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Presentation.EndPoints;
 using Presentation.Validators;
+using Presentation.Middleware;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -63,10 +63,9 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
-
 }
 
-app.UseMiddleware<ExceptionHandlerMiddleware>();
+app.UseMiddleware<ExceptionHandlingMiddleware>();
 
 app.UseAuthentication();
 app.UseAuthorization();
@@ -75,4 +74,4 @@ app.MapArticleEndpoint();
 app.MapUserEndpoint();
 app.MapCommentEndpoint();
 
-app.Run(); 
+app.Run();

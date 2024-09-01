@@ -1,51 +1,82 @@
+using System.Text.Json;
 using Domain.Exeptions;
 
-namespace Presentation.Middleware;
-
-public class ExceptionHandlingMiddleware(RequestDelegate next, ILogger<ExceptionHandlingMiddleware> logger)
+namespace Presentation.Middleware
 {
-
-    private readonly RequestDelegate _next = next;
-    private readonly ILogger<ExceptionHandlingMiddleware> _logger = logger;
-
-    public async Task InvokeAsync(HttpContext context)
+    public class ExceptionHandlingMiddleware
     {
-        try
-        {
-            await _next(context);
-        }
-        catch (NotFound ex)
-        {
-            _logger.LogError(ex, "Resource not found");
-            context.Response.StatusCode = StatusCodes.Status404NotFound;
-            await context.Response.WriteAsync(ex.Message);
-        }
-        catch (InvalidOperation ex)
-        {
-            _logger.LogError(ex, "Invalid operation");
-            context.Response.StatusCode = StatusCodes.Status400BadRequest;
-            await context.Response.WriteAsync(ex.Message);
-        }
-        catch (BadHttpRequestException ex)
-        {
-            _logger.LogError(ex, "Failed to read parameter from the request body as JSON");
+        private readonly RequestDelegate _next;
+        private readonly ILogger<ExceptionHandlingMiddleware> _logger;
 
-            context.Response.StatusCode = StatusCodes.Status400BadRequest;
-            context.Response.ContentType = "application/json";
+        public ExceptionHandlingMiddleware(RequestDelegate next, ILogger<ExceptionHandlingMiddleware> logger)
+        {
+            _next = next;
+            _logger = logger;
+        }
 
-            var errorResponse = new
+        public async Task InvokeAsync(HttpContext context)
+        {
+            try
             {
-                Message = "Invalid request data.",
-                Details = ex.Message
-            };
+                await _next(context);
+            }
+            catch (NotFound ex)
+            {
+                _logger.LogError(ex, "Resource not found");
+                context.Response.StatusCode = StatusCodes.Status404NotFound;
+                context.Response.ContentType = "application/json";
 
-            await context.Response.WriteAsJsonAsync(errorResponse);
-        }
-        catch (Exception ex)
-        {
-            _logger.LogError(ex, "An unexpected error occurred");
-            context.Response.StatusCode = StatusCodes.Status500InternalServerError;
-            await context.Response.WriteAsync("An unexpected error occurred.");
+                var errorResponse = new
+                {
+                    ex.Message
+                };
+
+                var jsonResponse = JsonSerializer.Serialize(errorResponse);
+                await context.Response.WriteAsync(jsonResponse);
+            }
+            catch (InvalidOperationException ex)
+            {
+                _logger.LogError(ex, "Invalid operation");
+                context.Response.StatusCode = StatusCodes.Status400BadRequest;
+                context.Response.ContentType = "application/json";
+
+                var errorResponse = new
+                {
+                    ex.Message
+                };
+
+                var jsonResponse = JsonSerializer.Serialize(errorResponse);
+                await context.Response.WriteAsync(jsonResponse);
+            }
+            catch (BadHttpRequestException ex)
+            {
+                _logger.LogError(ex, "Failed to read parameter from the request body as JSON");
+                context.Response.StatusCode = StatusCodes.Status400BadRequest;
+                context.Response.ContentType = "application/json";
+
+                var errorResponse = new
+                {
+                    Message = "Invalid request data.",
+                    Details = ex.Message
+                };
+
+                var jsonResponse = JsonSerializer.Serialize(errorResponse);
+                await context.Response.WriteAsync(jsonResponse);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "An unexpected error occurred");
+                context.Response.StatusCode = StatusCodes.Status500InternalServerError;
+                context.Response.ContentType = "application/json";
+
+                var errorResponse = new
+                {
+                    Message = "An unexpected error occurred."
+                };
+
+                var jsonResponse = JsonSerializer.Serialize(errorResponse);
+                await context.Response.WriteAsync(jsonResponse);
+            }
         }
     }
 }

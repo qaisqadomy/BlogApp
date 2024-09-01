@@ -20,25 +20,34 @@ public class ArticleRepository(AppDbContext context) : IArticleRepository
         return list;
     }
     public List<Article> GetArticle(string? tag, string? author, bool? favorited)
-    {
-        var query = context.Articles.AsQueryable();
+{
+    var query = context.Articles.AsQueryable();
 
-        if (!string.IsNullOrEmpty(author))
-        {
-            var user = context.Users.FirstOrDefault(u => u.UserName == author);
-                query = query.Where(a => a.AuthorId == user.Id);
-            
-        }
-        if (!string.IsNullOrEmpty(tag))
-        {
-            query = query.Where(a => a.Tags!.Contains(tag));
-        }
-        if (favorited.HasValue)
-        {
-            query = query.Where(a => a.Favorited == favorited.Value);
-        }
-        return [.. query];
+    if (!string.IsNullOrEmpty(author))
+    {
+        var user = context.Users.FirstOrDefault(u => u.UserName == author) ?? throw new ArticleNotFound($"Article with the user {author} not found");
+            query = query.Where(a => a.AuthorId == user.Id);
     }
+    
+    if (!string.IsNullOrEmpty(tag))
+    {
+        query = query.Where(a => a.Tags!.Contains(tag));
+    }
+    
+    if (favorited.HasValue)
+    {
+        query = query.Where(a => a.Favorited == favorited.Value);
+    }
+
+    var result = query.ToList();
+    if (result.Count == 0)
+    {
+        throw new ArticleNotFound("Articles not found");
+    }
+
+    return result;
+}
+
 
     public void UpdateArticle(Article article, int Id)
     {
