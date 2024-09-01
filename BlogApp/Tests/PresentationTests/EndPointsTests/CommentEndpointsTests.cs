@@ -1,60 +1,36 @@
-using Microsoft.AspNetCore.Mvc.Testing;
-using System.Text.Json;
-using Presentation;
-using Application.DTOs;
+using System.Net;
 using System.Text;
-using Domain.Entities;
-using Moq;
-using Microsoft.EntityFrameworkCore;
-using Infrastructure.Data;
-using Microsoft.Extensions.DependencyInjection;
+using System.Text.Json;
+using Application.DTOs;
+using Microsoft.AspNetCore.Mvc.Testing;
+using Presentation;
+using Xunit;
+using Xunit.Abstractions;
 
 namespace PresentationTests.EndPointsTests
 {
-    public class CommentEndpointsTests : IClassFixture<WebApplicationFactory<Program>>
+    public class CommentEndpointsTests : IClassFixture<CommentTestFixture>
     {
-          private readonly HttpClient _client;
-          private readonly InMemoryDbContext dbContext;
-        public CommentEndpointsTests(WebApplicationFactory<Program> factory)
-        {
-            dbContext = new InMemoryDbContext();
-            var webAppFactory = factory.WithWebHostBuilder(builder =>
-            {
-                builder.ConfigureServices(services =>
-                {
-                    
-                    var descriptor = services.SingleOrDefault(d => d.ServiceType == typeof(DbContextOptions<AppDbContext>));
-                    if (descriptor != null)
-                    {
-                        services.Remove(descriptor);
-                    }
-                    services.AddSingleton(dbContext.DbContext);
-                });
-            });
+        private readonly HttpClient _client;
 
-            _client = factory.CreateClient();
+        public CommentEndpointsTests(CommentTestFixture fixture)
+        {
+            _client = fixture.Client;
         }
+
         [Fact]
         public async Task GetAll_ShouldReturnOkWithComments()
         {
-
             var response = await _client.GetAsync("/comment/");
-
-
             response.EnsureSuccessStatusCode();
             var responseString = await response.Content.ReadAsStringAsync();
-
-            var options = new JsonSerializerOptions
-            {
-                PropertyNameCaseInsensitive = true,
-                DefaultIgnoreCondition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull
-            };
-
+            var options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
             var comments = JsonSerializer.Deserialize<List<CommentViewDTO>>(responseString, options);
 
             Assert.NotNull(comments);
             Assert.NotEmpty(comments);
         }
+
         [Fact]
         public async Task Post_ShouldAddComment()
         {
@@ -67,11 +43,17 @@ namespace PresentationTests.EndPointsTests
             };
 
             var content = new StringContent(JsonSerializer.Serialize(newComment), Encoding.UTF8, "application/json");
-
             var response = await _client.PostAsync("/comment/", content);
 
             response.EnsureSuccessStatusCode();
         }
-    
+
+        [Fact]
+        public async Task Delete_ShouldRemoveCommentAndReturnNoContent()
+        {
+            var response = await _client.DeleteAsync($"/comment/{1}");
+            response.EnsureSuccessStatusCode();
+            Assert.Equal(HttpStatusCode.NoContent, response.StatusCode);
+        }
     }
 }

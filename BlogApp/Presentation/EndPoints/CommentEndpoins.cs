@@ -26,9 +26,7 @@ public static class CommentEndpoins
         CommentGroup.MapDelete("/{id}", (int id, CommentService service) =>
  {
      service.DeleteComment(id);
-     return Results.Ok();
+     return Results.NoContent();
  });
-
- 
     }
 }
