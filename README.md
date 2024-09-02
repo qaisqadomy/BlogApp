@@ -2,7 +2,7 @@ User Management API
 
 Prerequisites
 Ensure you have the following installed on your machine:
-
+ 
 .NET 8 SDK
 SQL Server (Optional, only if not using InMemoryDb)
 Postman (for testing the API)
