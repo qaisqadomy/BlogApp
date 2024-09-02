@@ -24,22 +24,29 @@ Install Dependencies
 Run the following command to restore all necessary packages:
 
 bash
-Copy code
+
+
 dotnet restore
 Update the Database
 If using a persistent database, apply migrations:
 
 bash
-Copy code
+
+
 dotnet ef database update
 Running the Application
 Build the Solution
+
+
 bash
-Copy code
+
+
 dotnet build
 Run the Application
+
 bash
-Copy code
+
+
 dotnet run
 By default, the API will be hosted at https://localhost:5001/.
 
@@ -47,7 +54,8 @@ Testing
 This project uses xUnit for testing. To run the tests, execute the following command:
 
 bash
-Copy code
+
+
 dotnet test
 Note: If you encounter issues where tests pass individually but fail when run together, ensure that the tests are properly isolated, especially when checking for 401 Unauthorized responses.
 
@@ -55,7 +63,8 @@ Swagger Documentation
 Swagger is integrated for API documentation. Once the application is running, you can access the Swagger UI at:
 
 bash
-Copy code
+
+
 https://localhost:5001/swagger
 Using Postman
 Postman is a powerful tool for testing APIs. Follow these steps to test the User endpoints:
@@ -65,12 +74,16 @@ Open Postman and create a new POST request.
 Set the URL to https://localhost:5176/api/user/register.
 In the Body tab, select raw and JSON format, then enter the registration details.
 Click Send to register the user.
+
+
 User Login
 Create a new POST request in Postman.
 Set the URL to https://localhost:5176/api/user/login.
 In the Body tab, select raw and JSON format, then enter the login credentials.
 Click Send to log in.
 The response will include a JWT token. Copy this token for authorization in subsequent requests.
+
+
 Update User
 Create a new PUT request in Postman.
 Set the URL to https://localhost:5176/api/user/update.
