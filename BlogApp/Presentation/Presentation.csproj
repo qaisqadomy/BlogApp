@@ -4,6 +4,10 @@
         <TargetFramework>net8.0</TargetFramework>
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
+          <ExcludeFromCodeCoverage>
+      FluentValidation*
+      FluentValidation.DependencyInjectionExtensions*
+    </ExcludeFromCodeCoverage>
     </PropertyGroup>
 
     <ItemGroup>
