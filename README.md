@@ -1,4 +1,5 @@
 User Management API
+
 Prerequisites
 Ensure you have the following installed on your machine:
 
