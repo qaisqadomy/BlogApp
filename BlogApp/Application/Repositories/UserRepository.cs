@@ -13,11 +13,7 @@ namespace Application.Repositories;
 /// <summary>
 /// Provides data access methods for managing users in the database.
 /// </summary>
-/// <remarks>
-/// Initializes a new instance of the <see cref="UserRepository"/> class.
-/// </remarks>
-/// <param name="context">The <see cref="AppDbContext"/> used for database operations.</param>
-/// <param name="configuration">The <see cref="IConfiguration"/> used for retrieving configuration settings.</param>
+
 public class UserRepository(AppDbContext context, IConfiguration configuration) : IUserRepository
 {
     private readonly AppDbContext _context = context;
@@ -26,10 +22,7 @@ public class UserRepository(AppDbContext context, IConfiguration configuration) 
     /// <summary>
     /// Retrieves a user from the database based on the provided JWT token.
     /// </summary>
-    /// <param name="token">The JWT token representing the user.</param>
-    /// <returns>The <see cref="User"/> corresponding to the provided token.</returns>
-    /// <exception cref="InvalidToken">Thrown when the provided token is invalid or cannot be read.</exception>
-    /// <exception cref="UserNotFound">Thrown when no user is found matching the token claims.</exception>
+
     public User Get(string token)
     {
         if (string.IsNullOrEmpty(token))
@@ -64,8 +57,7 @@ public class UserRepository(AppDbContext context, IConfiguration configuration) 
     /// <summary>
     /// Retrieves a list of users by their IDs.
     /// </summary>
-    /// <param name="AuthorId">The list of user IDs to retrieve.</param>
-    /// <returns>A list of users with the specified IDs.</returns>
+ 
     public List<User> GetByIds(List<int> AuthorId)
     {
         List<User> users = _context.Users.Where(u => AuthorId.Contains(u.Id)).ToList();
@@ -75,10 +67,7 @@ public class UserRepository(AppDbContext context, IConfiguration configuration) 
     /// <summary>
     /// Authenticates a user based on email and password, and returns a JWT token if successful.
     /// </summary>
-    /// <param name="email">The email of the user to authenticate.</param>
-    /// <param name="password">The password of the user to authenticate.</param>
-    /// <returns>A JWT token if authentication is successful.</returns>
-    /// <exception cref="NotRegesterd">Thrown when the user with the specified email is not registered.</exception>
+
     public string Login(string email, string password)
     {
         User user = _context.Users.FirstOrDefault(u => u.Email == email && u.Password == password)
@@ -106,7 +95,7 @@ public class UserRepository(AppDbContext context, IConfiguration configuration) 
     /// <summary>
     /// Registers a new user in the database.
     /// </summary>
-    /// <param name="user">The user to register.</param>
+
     public void Register(User user)
     {
         _context.Users.Add(user);
@@ -116,10 +105,7 @@ public class UserRepository(AppDbContext context, IConfiguration configuration) 
     /// <summary>
     /// Updates the details of an existing user based on the provided JWT token.
     /// </summary>
-    /// <param name="user">The updated user details.</param>
-    /// <param name="token">The JWT token representing the user to be updated.</param>
-    /// <exception cref="InvalidToken">Thrown when the provided token is invalid.</exception>
-    /// <exception cref="UserNotFound">Thrown when no user is found matching the token claims.</exception>
+  
     public void Update(User user, string token)
     {
         if (string.IsNullOrEmpty(token))

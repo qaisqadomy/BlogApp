@@ -7,11 +7,7 @@ namespace Application.Services;
 /// <summary>
 /// Provides services for managing articles, including retrieval, creation, update, and deletion.
 /// </summary>
-/// <remarks>
-/// Initializes a new instance of the <see cref="ArticleService"/> class.
-/// </remarks>
-/// <param name="articleRepository">The <see cref="IArticleRepository"/> used for article data operations.</param>
-/// <param name="userRepository">The <see cref="IUserRepository"/> used for user data operations.</param>
+
 public class ArticleService(IArticleRepository articleRepository, IUserRepository userRepository)
 {
     private readonly IArticleRepository _articleRepository = articleRepository;
@@ -20,7 +16,7 @@ public class ArticleService(IArticleRepository articleRepository, IUserRepositor
     /// <summary>
     /// Retrieves all articles and their associated user data.
     /// </summary>
-    /// <returns>A list of <see cref="ArticleViewDTO"/> representing all articles.</returns>
+
     public List<ArticleViewDTO> GetAll()
     {
         List<Article> articles = _articleRepository.GetAll();
@@ -59,10 +55,7 @@ public class ArticleService(IArticleRepository articleRepository, IUserRepositor
     /// <summary>
     /// Retrieves articles based on specified filters and their associated user data.
     /// </summary>
-    /// <param name="tag">The tag to filter articles by.</param>
-    /// <param name="author">The username of the author to filter articles by.</param>
-    /// <param name="favorited">The favorited status to filter articles by.</param>
-    /// <returns>A list of <see cref="ArticleViewDTO"/> representing filtered articles.</returns>
+
     public List<ArticleViewDTO> GetArticle(string? tag, string? author, bool? favorited)
     {
         List<Article> articles = _articleRepository.GetArticle(tag, author, favorited);
@@ -101,7 +94,7 @@ public class ArticleService(IArticleRepository articleRepository, IUserRepositor
     /// <summary>
     /// Adds a new article to the repository.
     /// </summary>
-    /// <param name="art">The <see cref="ArticleDTO"/> representing the article to add.</param>
+ 
     public void AddArticle(ArticleDTO art)
     {
         Article article = new()
@@ -124,8 +117,6 @@ public class ArticleService(IArticleRepository articleRepository, IUserRepositor
     /// <summary>
     /// Updates an existing article in the repository.
     /// </summary>
-    /// <param name="art">The <see cref="ArticleDTO"/> containing updated article details.</param>
-    /// <param name="id">The ID of the article to update.</param>
     public void UpdateArticle(ArticleDTO art, int id)
     {
         Article article = new()
@@ -148,7 +139,7 @@ public class ArticleService(IArticleRepository articleRepository, IUserRepositor
     /// <summary>
     /// Deletes an article from the repository.
     /// </summary>
-    /// <param name="id">The ID of the article to delete.</param>
+
     public void DeleteArticle(int id)
     {
         _articleRepository.DeleteArticle(id);

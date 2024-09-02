@@ -6,11 +6,7 @@ namespace Presentation.Middleware;
 /// <summary>
 /// Middleware for handling exceptions and generating appropriate HTTP responses.
 /// </summary>
-/// <remarks>
-/// Initializes a new instance of the <see cref="ExceptionHandlingMiddleware"/> class.
-/// </remarks>
-/// <param name="next">The next middleware in the request pipeline.</param>
-/// <param name="logger">The <see cref="ILogger{ExceptionHandlingMiddleware}"/> instance used for logging errors.</param>
+
 public class ExceptionHandlingMiddleware(RequestDelegate next, ILogger<ExceptionHandlingMiddleware> logger)
 {
     private readonly RequestDelegate _next = next;
@@ -19,8 +15,7 @@ public class ExceptionHandlingMiddleware(RequestDelegate next, ILogger<Exception
     /// <summary>
     /// Invokes the middleware to handle exceptions and generate appropriate HTTP responses.
     /// </summary>
-    /// <param name="context">The <see cref="HttpContext"/> for the current request.</param>
-    /// <returns>A task representing the asynchronous operation.</returns>
+  
     public async Task InvokeAsync(HttpContext context)
     {
         try

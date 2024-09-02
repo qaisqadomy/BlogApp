@@ -7,11 +7,7 @@ namespace Application.Services;
 /// <summary>
 /// Provides services for managing comments, including retrieval, creation, and deletion.
 /// </summary>
-/// <remarks>
-/// Initializes a new instance of the <see cref="CommentService"/> class.
-/// </remarks>
-/// <param name="commentRepository">The <see cref="ICommentRepository"/> used for comment data operations.</param>
-/// <param name="userRepository">The <see cref="IUserRepository"/> used for user data operations.</param>
+
 public class CommentService(ICommentRepository commentRepository, IUserRepository userRepository)
 {
     private readonly ICommentRepository _commentRepository = commentRepository;
@@ -20,7 +16,7 @@ public class CommentService(ICommentRepository commentRepository, IUserRepositor
     /// <summary>
     /// Retrieves all comments and their associated user data.
     /// </summary>
-    /// <returns>A list of <see cref="CommentViewDTO"/> representing all comments.</returns>
+  
     public List<CommentViewDTO> GetAll()
     {
         List<Comment> comments = _commentRepository.GetAll();
@@ -53,7 +49,7 @@ public class CommentService(ICommentRepository commentRepository, IUserRepositor
     /// <summary>
     /// Adds a new comment to the repository.
     /// </summary>
-    /// <param name="comment">The <see cref="CommentDTO"/> representing the comment to add.</param>
+
     public void AddComment(CommentDTO comment)
     {
         Comment commentEntity = new()
@@ -70,7 +66,7 @@ public class CommentService(ICommentRepository commentRepository, IUserRepositor
     /// <summary>
     /// Deletes a comment from the repository.
     /// </summary>
-    /// <param name="id">The ID of the comment to delete.</param>
+
     public void DeleteComment(int id)
     {
         _commentRepository.DeleteComment(id);

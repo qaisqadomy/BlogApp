@@ -6,10 +6,7 @@ namespace Infrastructure.Data;
 /// <summary>
 /// Represents the application's database context for Entity Framework Core.
 /// </summary>
-/// <remarks>
-/// Initializes a new instance of the <see cref="AppDbContext"/> class.
-/// </remarks>
-/// <param name="options">The options to be used by the <see cref="DbContext"/>.</param>
+
 public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(options)
 {
 

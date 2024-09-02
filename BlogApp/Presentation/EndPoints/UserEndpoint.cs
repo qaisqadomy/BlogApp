@@ -11,7 +11,7 @@ public static class UserEndpoints
     /// <summary>
     /// Maps the user-related endpoints to the specified <see cref="WebApplication"/> instance.
     /// </summary>
-    /// <param name="app">The <see cref="WebApplication"/> instance to map the endpoints on.</param>
+
     public static void MapUserEndpoint(this WebApplication app)
     {
         RouteGroupBuilder UserGroup = app.MapGroup("/user")
@@ -20,9 +20,7 @@ public static class UserEndpoints
         /// <summary>
         /// Registers a new user.
         /// </summary>
-        /// <param name="model">The <see cref="UserDTO"/> representing the user to register.</param>
-        /// <param name="service">The <see cref="UserService"/> instance used to register the user.</param>
-        /// <returns>An HTTP response indicating the result of the registration operation.</returns>
+
         UserGroup.MapPost("/register", (UserDTO model, UserService service) =>
         {
             service.Register(model);
@@ -32,10 +30,7 @@ public static class UserEndpoints
         /// <summary>
         /// Logs in a user and returns a token.
         /// </summary>
-        /// <param name="Email">The email of the user trying to log in.</param>
-        /// <param name="Password">The password of the user trying to log in.</param>
-        /// <param name="service">The <see cref="UserService"/> instance used to authenticate the user.</param>
-        /// <returns>An HTTP response containing the authentication token if the login was successful.</returns>
+        
         UserGroup.MapPost("/login", (string Email, string Password, UserService service) =>
         {
             string token = service.Login(Email, Password);
@@ -45,9 +40,7 @@ public static class UserEndpoints
         /// <summary>
         /// Gets the details of the currently authenticated user.
         /// </summary>
-        /// <param name="context">The <see cref="HttpContext"/> for the current request.</param>
-        /// <param name="service">The <see cref="UserService"/> instance used to get the user details.</param>
-        /// <returns>An HTTP response containing the user details if the token is valid, otherwise an unauthorized response.</returns>
+ 
         UserGroup.MapGet("/", (HttpContext context, UserService service) =>
         {
             var authHeader = context.Request.Headers["Authorization"].ToString();
@@ -67,10 +60,7 @@ public static class UserEndpoints
         /// <summary>
         /// Updates the details of the currently authenticated user.
         /// </summary>
-        /// <param name="context">The <see cref="HttpContext"/> for the current request.</param>
-        /// <param name="user">The <see cref="UserDTO"/> containing the updated user details.</param>
-        /// <param name="service">The <see cref="UserService"/> instance used to update the user details.</param>
-        /// <returns>An HTTP response indicating the result of the update operation.</returns>
+       
         UserGroup.MapPut("/", (HttpContext context, UserDTO user, UserService service) =>
         {
             var authHeader = context.Request.Headers["Authorization"].ToString();
