@@ -78,7 +78,7 @@ public class ArticleServiceTests
         public void AddArticle_CallsAddArticleOnRepository()
         {
             
-            ArticleDTO articleDto = new ArticleDTO
+            ArticleDTO articleDto = new()
             {
                 Slug = "slug1",
                 Title = "Title1",
@@ -102,7 +102,7 @@ public class ArticleServiceTests
         [Fact]
         public void UpdateArticle_CallsUpdateArticleOnRepository()
         {
-            ArticleDTO articleDto = new ArticleDTO
+            ArticleDTO articleDto = new()
             {
                 Slug = "slug1",
                 Title = "Title1",

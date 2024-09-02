@@ -2,21 +2,18 @@ using System.Net;
 using System.Text;
 using System.Text.Json;
 using Application.DTOs;
+using Infrastructure.Data;
 using Microsoft.AspNetCore.Mvc.Testing;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using Presentation;
-using Xunit;
-using Xunit.Abstractions;
+using Domain.Entities;
 
 namespace PresentationTests.EndPointsTests
 {
-    public class CommentEndpointsTests : IClassFixture<CommentTestFixture>
+    public class CommentEndpointsTests(CommentTestFixture fixture) : IClassFixture<CommentTestFixture>
     {
-        private readonly HttpClient _client;
-
-        public CommentEndpointsTests(CommentTestFixture fixture)
-        {
-            _client = fixture.Client;
-        }
+        private readonly HttpClient _client = fixture.Client;
 
         [Fact]
         public async Task GetAll_ShouldReturnOkWithComments()
@@ -57,3 +54,65 @@ namespace PresentationTests.EndPointsTests
         }
     }
 }
+
+
+public class CommentTestFixture : IDisposable
+    {
+        public HttpClient Client { get; private set; }
+        private readonly WebApplicationFactory<Program> _factory;
+
+        public CommentTestFixture()
+        {
+            _factory = new WebApplicationFactory<Program>()
+                .WithWebHostBuilder(builder =>
+                {
+                    builder.ConfigureServices(services =>
+                    {
+                        var descriptor = services.SingleOrDefault(
+                            d => d.ServiceType == typeof(DbContextOptions<AppDbContext>));
+
+                        if (descriptor != null)
+                        {
+                            services.Remove(descriptor);
+                        }
+
+                        services.AddDbContext<AppDbContext>(options =>
+                        {
+                            options.UseInMemoryDatabase("InMemoryDbForTesting");
+                        });
+
+                        var serviceProvider = services.BuildServiceProvider();
+
+                        using (var scope = serviceProvider.CreateScope())
+                        {
+                            var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+                            db.Database.EnsureCreated();
+                            SeedDatabase(db);
+                        }
+                    });
+                });
+
+            Client = _factory.CreateClient();
+        }
+
+        private static void SeedDatabase(AppDbContext context)
+        {
+            context.Comments.RemoveRange(context.Comments);
+            context.SaveChanges();
+
+            context.Comments.AddRange(
+                new Comment { Body = "Test Comment 1", CreatedAt = DateTime.UtcNow, UpdatedAt = DateTime.UtcNow, AuthorId = 1 },
+                new Comment { Body = "Test Comment 2", CreatedAt = DateTime.UtcNow, UpdatedAt = DateTime.UtcNow, AuthorId = 2 }
+            );
+            context.SaveChanges();
+        }
+
+        public void Dispose()
+        {
+
+            _factory.Dispose();
+
+
+            Client?.Dispose();
+        }
+    }

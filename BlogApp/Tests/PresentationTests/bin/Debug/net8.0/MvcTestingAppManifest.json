@@ -1,6 +1,6 @@
 {
-  "Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "C:\\Users\\qadom\\BlogAppTask\\BlogApp\\Application",
-  "Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "C:\\Users\\qadom\\BlogAppTask\\BlogApp\\Domain",
-  "Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "C:\\Users\\qadom\\BlogAppTask\\BlogApp\\Infrastructure",
-  "Presentation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "C:\\Users\\qadom\\BlogAppTask\\BlogApp\\Presentation"
+  "Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "\/home\/qais\/Downloads\/new\/BlogAppTask\/BlogApp\/Application",
+  "Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "\/home\/qais\/Downloads\/new\/BlogAppTask\/BlogApp\/Domain",
+  "Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "\/home\/qais\/Downloads\/new\/BlogAppTask\/BlogApp\/Infrastructure",
+  "Presentation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "\/home\/qais\/Downloads\/new\/BlogAppTask\/BlogApp\/Presentation"
 }

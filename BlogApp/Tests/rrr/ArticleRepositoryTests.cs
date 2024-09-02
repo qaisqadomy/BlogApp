@@ -163,7 +163,7 @@ public class ArticleRepositoryTests
         };
 
         var exception = Assert.Throws<ArticleNotFound>(() => _articleRepository.UpdateArticle(updatedArticle, 999));
-        Assert.Equal("article with the Id : 999 not found", exception.Message);
+        Assert.Equal("Article with the Id : 999 not found", exception.Message);
     }
     [Fact]
     public void GetArticle_ShouldThrowArticleNotFound_WhenNoArticlesMatch()
@@ -197,7 +197,7 @@ public class ArticleRepositoryTests
     public void DeleteArticle_ShouldThrowExceptionWhenArticleNotFound()
     {
         var exception = Assert.Throws<ArticleNotFound>(() => _articleRepository.DeleteArticle(999));
-        Assert.Equal("article with the Id : 999 not found", exception.Message);
+        Assert.Equal("Article with the Id : 999 not found", exception.Message);
     }
 }
 

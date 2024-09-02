@@ -24,7 +24,7 @@ public class UserServiceTests
     {
 
         string token = "validToken";
-        User user = new User
+        User user = new()
         {
             UserName = "testUser",
             Email = "testuser@example.com",
@@ -62,7 +62,7 @@ public class UserServiceTests
     public void Register_CallsRegisterOnRepository()
     {
 
-        UserDTO userDto = new UserDTO
+        UserDTO userDto = new()
         {
             UserName = "newUser",
             Email = "newuser@example.com",
@@ -83,7 +83,7 @@ public class UserServiceTests
     public void Update_CallsUpdateOnRepository()
     {
 
-        UserDTO userDto = new UserDTO
+        UserDTO userDto = new()
         {
             UserName = "updatedUser",
             Email = "updateduser@example.com",

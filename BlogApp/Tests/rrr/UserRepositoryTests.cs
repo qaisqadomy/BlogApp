@@ -33,7 +33,7 @@ public class UserRepositoryTests
     public void Register_ShouldAddUserToDatabase()
     {
 
-        User user = new User { UserName = "qais", Email = "qais@gmail.com", Password = "password123", Bio = "qqq", Image = "dsadsad", Following = false };
+        User user = new() { UserName = "qais", Email = "qais@gmail.com", Password = "password123", Bio = "qqq", Image = "dsadsad", Following = false };
 
 
         _userRepository.Register(user);
@@ -66,7 +66,7 @@ public class UserRepositoryTests
     {
 
         var exception = Assert.Throws<NotRegesterd>(() => _userRepository.Login("qais@gmail.com", "wrongpassword"));
-        Assert.Equal("User wih the email : qais@gmail.com not registerd", exception.Message);
+        Assert.Equal("User with the email : qais@gmail.com not registered", exception.Message);
     }
 
     [Fact]
@@ -211,7 +211,7 @@ public class UserRepositoryTests
         var updatedUser = new User { UserName = "qaisn", Email = "qaisn@gmail.com", Password = "newpassword123" };
 
         var exception = Assert.Throws<UserNotFound>(() => _userRepository.Update(updatedUser, tokenString));
-        Assert.Equal("There is no such a user", exception.Message);
+        Assert.Equal("There is no such user", exception.Message);
     }
 
     [Fact]

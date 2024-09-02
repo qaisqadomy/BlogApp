@@ -24,12 +24,12 @@ public class CommentServiceTests
         public void GetAll_ReturnsCommentViewDTOs()
         {
             
-            List<Comment> comments = new List<Comment>
+            List<Comment> comments = new()
             {
                 new() { Body = "Comment 1", CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, AuthorId = 1 },
                 new() { Body = "Comment 2", CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, AuthorId = 2 }
             };
-            List<User> users = new List<User>
+            List<User> users = new()
             {
                 new() { Id = 1, UserName = "User1", Email = "user1@example.com",Password="123",Bio = "Bio1", Image = "Image1", Following = true },
                 new() { Id = 2, UserName = "User2", Email = "user2@example.com",Password="123", Bio = "Bio2", Image = "Image2", Following = false }
@@ -51,7 +51,7 @@ public class CommentServiceTests
         public void AddComment_CallsAddCommentOnRepository()
         {
             
-            CommentDTO commentDto = new CommentDTO
+            CommentDTO commentDto = new()
             {
                 Body = "New Comment",
                 CreatedAt = DateTime.Now,
