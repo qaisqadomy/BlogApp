@@ -81,20 +81,28 @@ In the Body tab, select raw and JSON format, then enter the updated user details
 Click Send to update the user information.
 Using Postman with the JWT token ensures that you are authenticated when accessing protected endpoints.
 
-/*   Endpoints documentation     */
+   Endpoints documentation     
 
 Article Endpoints
+
 Base URL: /article
+
 This set of endpoints allows for managing articles, including creating, updating, deleting, and retrieving articles.
 
 GET /article/
 
 Description: Retrieves a list of articles, optionally filtered by tag, author, or favorited status.
+
 Parameters:
+
 tag (optional): Filter by tag.
+
 author (optional): Filter by author.
+
 favorited (optional): Filter by favorited status.
+
 Response: A list of ArticleViewDTO objects.
+
 GET /article/articles
 
 Description: Retrieves all articles.
