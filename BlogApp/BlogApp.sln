@@ -3,19 +3,19 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # 
 VisualStudioVersion = 17.5.002.0
 MinimumVisualStudioVersion = 
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Presentation", "Presentation\Presentation.csproj", "{47EC81C0-FE60-4F02-8387-E5E31D08B727}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Presentation", "src/presentation/Presentation\Presentation.csproj", "{47EC81C0-FE60-4F02-8387-E5E31D08B727}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{B83A2A02-FD02-4D2E-A788-758AEC142E30}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{064F0600-9CF1-4513-A4EC-ADCE309B82DE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "src/domain/Domain\Domain.csproj", "{064F0600-9CF1-4513-A4EC-ADCE309B82DE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "Application\Application.csproj", "{E96365C6-22B7-4077-9C6C-AC953EA36262}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "src/application/Application/Application.csproj", "{E96365C6-22B7-4077-9C6C-AC953EA36262}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{2D370B89-FE8D-4C62-8A27-AEFEA609A8A1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "src/infrastructure/Infrastructure\Infrastructure.csproj", "{2D370B89-FE8D-4C62-8A27-AEFEA609A8A1}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{75FA6478-1624-43DB-893A-73E4F9CF02EF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RepositoriesTests", "Tests\rrr\RepositoriesTests.csproj", "{AC22E4EB-0A6F-4806-AA39-B33A1ACDD129}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RepositoriesTests", "Tests/RepositoryTests\RepositoriesTests.csproj", "{AC22E4EB-0A6F-4806-AA39-B33A1ACDD129}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServicesTests", "Tests\ServicesTests\ServicesTests.csproj", "{43888219-228E-42D0-898F-EE6334B34F90}"
 EndProject

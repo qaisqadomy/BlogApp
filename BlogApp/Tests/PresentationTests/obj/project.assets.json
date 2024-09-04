@@ -8680,23 +8680,23 @@
     },
     "Application/1.0.0": {
       "type": "project",
-      "path": "../../Application/Application.csproj",
-      "msbuildProject": "../../Application/Application.csproj"
+      "path": "../../src/application/Application/Application.csproj",
+      "msbuildProject": "../../src/application/Application/Application.csproj"
     },
     "Domain/1.0.0": {
       "type": "project",
-      "path": "../../Domain/Domain.csproj",
-      "msbuildProject": "../../Domain/Domain.csproj"
+      "path": "../../src/domain/Domain/Domain.csproj",
+      "msbuildProject": "../../src/domain/Domain/Domain.csproj"
     },
     "Infrastructure/1.0.0": {
       "type": "project",
-      "path": "../../Infrastructure/Infrastructure.csproj",
-      "msbuildProject": "../../Infrastructure/Infrastructure.csproj"
+      "path": "../../src/infrastructure/Infrastructure/Infrastructure.csproj",
+      "msbuildProject": "../../src/infrastructure/Infrastructure/Infrastructure.csproj"
     },
     "Presentation/1.0.0": {
       "type": "project",
-      "path": "../../Presentation/Presentation.csproj",
-      "msbuildProject": "../../Presentation/Presentation.csproj"
+      "path": "../../src/presentation/Presentation/Presentation.csproj",
+      "msbuildProject": "../../src/presentation/Presentation/Presentation.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -8718,11 +8718,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/qais/Downloads/new/BlogAppTask/BlogApp/Tests/PresentationTests/PresentationTests.csproj",
+      "projectUniqueName": "/home/qais/Downloads/BlogAppTask/BlogApp/Tests/PresentationTests/PresentationTests.csproj",
       "projectName": "PresentationTests",
-      "projectPath": "/home/qais/Downloads/new/BlogAppTask/BlogApp/Tests/PresentationTests/PresentationTests.csproj",
+      "projectPath": "/home/qais/Downloads/BlogAppTask/BlogApp/Tests/PresentationTests/PresentationTests.csproj",
       "packagesPath": "/home/qais/.nuget/packages/",
-      "outputPath": "/home/qais/Downloads/new/BlogAppTask/BlogApp/Tests/PresentationTests/obj/",
+      "outputPath": "/home/qais/Downloads/BlogAppTask/BlogApp/Tests/PresentationTests/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/home/qais/.nuget/NuGet/NuGet.Config"
@@ -8737,8 +8737,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "/home/qais/Downloads/new/BlogAppTask/BlogApp/Presentation/Presentation.csproj": {
-              "projectPath": "/home/qais/Downloads/new/BlogAppTask/BlogApp/Presentation/Presentation.csproj"
+            "/home/qais/Downloads/BlogAppTask/BlogApp/src/presentation/Presentation/Presentation.csproj": {
+              "projectPath": "/home/qais/Downloads/BlogAppTask/BlogApp/src/presentation/Presentation/Presentation.csproj"
             }
           }
         }

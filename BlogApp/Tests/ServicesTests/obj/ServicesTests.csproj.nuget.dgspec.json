@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/home/qais/Downloads/new/BlogAppTask/BlogApp/Tests/ServicesTests/ServicesTests.csproj": {}
+    "/home/qais/Downloads/BlogAppTask/BlogApp/Tests/ServicesTests/ServicesTests.csproj": {}
   },
   "projects": {
-    "/home/qais/Downloads/new/BlogAppTask/BlogApp/Application/Application.csproj": {
+    "/home/qais/Downloads/BlogAppTask/BlogApp/Tests/ServicesTests/ServicesTests.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/qais/Downloads/new/BlogAppTask/BlogApp/Application/Application.csproj",
-        "projectName": "Application",
-        "projectPath": "/home/qais/Downloads/new/BlogAppTask/BlogApp/Application/Application.csproj",
+        "projectUniqueName": "/home/qais/Downloads/BlogAppTask/BlogApp/Tests/ServicesTests/ServicesTests.csproj",
+        "projectName": "ServicesTests",
+        "projectPath": "/home/qais/Downloads/BlogAppTask/BlogApp/Tests/ServicesTests/ServicesTests.csproj",
         "packagesPath": "/home/qais/.nuget/packages/",
-        "outputPath": "/home/qais/Downloads/new/BlogAppTask/BlogApp/Application/obj/",
+        "outputPath": "/home/qais/Downloads/BlogAppTask/BlogApp/Tests/ServicesTests/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/qais/.nuget/NuGet/NuGet.Config"
@@ -26,11 +26,98 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "/home/qais/Downloads/new/BlogAppTask/BlogApp/Domain/Domain.csproj": {
-                "projectPath": "/home/qais/Downloads/new/BlogAppTask/BlogApp/Domain/Domain.csproj"
+              "/home/qais/Downloads/BlogAppTask/BlogApp/src/application/Application/Application.csproj": {
+                "projectPath": "/home/qais/Downloads/BlogAppTask/BlogApp/src/application/Application/Application.csproj"
               },
-              "/home/qais/Downloads/new/BlogAppTask/BlogApp/Infrastructure/Infrastructure.csproj": {
-                "projectPath": "/home/qais/Downloads/new/BlogAppTask/BlogApp/Infrastructure/Infrastructure.csproj"
+              "/home/qais/Downloads/BlogAppTask/BlogApp/src/domain/Domain/Domain.csproj": {
+                "projectPath": "/home/qais/Downloads/BlogAppTask/BlogApp/src/domain/Domain/Domain.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "Microsoft.NET.Test.Sdk": {
+              "target": "Package",
+              "version": "[17.8.0, )"
+            },
+            "Moq": {
+              "target": "Package",
+              "version": "[4.20.70, )"
+            },
+            "coverlet.collector": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
+            "xunit": {
+              "target": "Package",
+              "version": "[2.5.3, )"
+            },
+            "xunit.runner.visualstudio": {
+              "target": "Package",
+              "version": "[2.5.3, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/8.0.401/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/home/qais/Downloads/BlogAppTask/BlogApp/src/application/Application/Application.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/qais/Downloads/BlogAppTask/BlogApp/src/application/Application/Application.csproj",
+        "projectName": "Application",
+        "projectPath": "/home/qais/Downloads/BlogAppTask/BlogApp/src/application/Application/Application.csproj",
+        "packagesPath": "/home/qais/.nuget/packages/",
+        "outputPath": "/home/qais/Downloads/BlogAppTask/BlogApp/src/application/Application/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/qais/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "/home/qais/Downloads/BlogAppTask/BlogApp/src/domain/Domain/Domain.csproj": {
+                "projectPath": "/home/qais/Downloads/BlogAppTask/BlogApp/src/domain/Domain/Domain.csproj"
+              },
+              "/home/qais/Downloads/BlogAppTask/BlogApp/src/infrastructure/Infrastructure/Infrastructure.csproj": {
+                "projectPath": "/home/qais/Downloads/BlogAppTask/BlogApp/src/infrastructure/Infrastructure/Infrastructure.csproj"
               }
             }
           }
@@ -79,14 +166,14 @@
         }
       }
     },
-    "/home/qais/Downloads/new/BlogAppTask/BlogApp/Domain/Domain.csproj": {
+    "/home/qais/Downloads/BlogAppTask/BlogApp/src/domain/Domain/Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/qais/Downloads/new/BlogAppTask/BlogApp/Domain/Domain.csproj",
+        "projectUniqueName": "/home/qais/Downloads/BlogAppTask/BlogApp/src/domain/Domain/Domain.csproj",
         "projectName": "Domain",
-        "projectPath": "/home/qais/Downloads/new/BlogAppTask/BlogApp/Domain/Domain.csproj",
+        "projectPath": "/home/qais/Downloads/BlogAppTask/BlogApp/src/domain/Domain/Domain.csproj",
         "packagesPath": "/home/qais/.nuget/packages/",
-        "outputPath": "/home/qais/Downloads/new/BlogAppTask/BlogApp/Domain/obj/",
+        "outputPath": "/home/qais/Downloads/BlogAppTask/BlogApp/src/domain/Domain/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/qais/.nuget/NuGet/NuGet.Config"
@@ -143,14 +230,14 @@
         }
       }
     },
-    "/home/qais/Downloads/new/BlogAppTask/BlogApp/Infrastructure/Infrastructure.csproj": {
+    "/home/qais/Downloads/BlogAppTask/BlogApp/src/infrastructure/Infrastructure/Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/qais/Downloads/new/BlogAppTask/BlogApp/Infrastructure/Infrastructure.csproj",
+        "projectUniqueName": "/home/qais/Downloads/BlogAppTask/BlogApp/src/infrastructure/Infrastructure/Infrastructure.csproj",
         "projectName": "Infrastructure",
-        "projectPath": "/home/qais/Downloads/new/BlogAppTask/BlogApp/Infrastructure/Infrastructure.csproj",
+        "projectPath": "/home/qais/Downloads/BlogAppTask/BlogApp/src/infrastructure/Infrastructure/Infrastructure.csproj",
         "packagesPath": "/home/qais/.nuget/packages/",
-        "outputPath": "/home/qais/Downloads/new/BlogAppTask/BlogApp/Infrastructure/obj/",
+        "outputPath": "/home/qais/Downloads/BlogAppTask/BlogApp/src/infrastructure/Infrastructure/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/qais/.nuget/NuGet/NuGet.Config"
@@ -165,8 +252,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "/home/qais/Downloads/new/BlogAppTask/BlogApp/Domain/Domain.csproj": {
-                "projectPath": "/home/qais/Downloads/new/BlogAppTask/BlogApp/Domain/Domain.csproj"
+              "/home/qais/Downloads/BlogAppTask/BlogApp/src/domain/Domain/Domain.csproj": {
+                "projectPath": "/home/qais/Downloads/BlogAppTask/BlogApp/src/domain/Domain/Domain.csproj"
               }
             }
           }
@@ -209,93 +296,6 @@
               "suppressParent": "All",
               "target": "Package",
               "version": "[6.0.2, )"
-            }
-          },
-          "imports": [
-            "net461",
-            "net462",
-            "net47",
-            "net471",
-            "net472",
-            "net48",
-            "net481"
-          ],
-          "assetTargetFallback": true,
-          "warn": true,
-          "frameworkReferences": {
-            "Microsoft.NETCore.App": {
-              "privateAssets": "all"
-            }
-          },
-          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/8.0.401/PortableRuntimeIdentifierGraph.json"
-        }
-      }
-    },
-    "/home/qais/Downloads/new/BlogAppTask/BlogApp/Tests/ServicesTests/ServicesTests.csproj": {
-      "version": "1.0.0",
-      "restore": {
-        "projectUniqueName": "/home/qais/Downloads/new/BlogAppTask/BlogApp/Tests/ServicesTests/ServicesTests.csproj",
-        "projectName": "ServicesTests",
-        "projectPath": "/home/qais/Downloads/new/BlogAppTask/BlogApp/Tests/ServicesTests/ServicesTests.csproj",
-        "packagesPath": "/home/qais/.nuget/packages/",
-        "outputPath": "/home/qais/Downloads/new/BlogAppTask/BlogApp/Tests/ServicesTests/obj/",
-        "projectStyle": "PackageReference",
-        "configFilePaths": [
-          "/home/qais/.nuget/NuGet/NuGet.Config"
-        ],
-        "originalTargetFrameworks": [
-          "net8.0"
-        ],
-        "sources": {
-          "https://api.nuget.org/v3/index.json": {}
-        },
-        "frameworks": {
-          "net8.0": {
-            "targetAlias": "net8.0",
-            "projectReferences": {
-              "/home/qais/Downloads/new/BlogAppTask/BlogApp/Application/Application.csproj": {
-                "projectPath": "/home/qais/Downloads/new/BlogAppTask/BlogApp/Application/Application.csproj"
-              },
-              "/home/qais/Downloads/new/BlogAppTask/BlogApp/Domain/Domain.csproj": {
-                "projectPath": "/home/qais/Downloads/new/BlogAppTask/BlogApp/Domain/Domain.csproj"
-              }
-            }
-          }
-        },
-        "warningProperties": {
-          "warnAsError": [
-            "NU1605"
-          ]
-        },
-        "restoreAuditProperties": {
-          "enableAudit": "true",
-          "auditLevel": "low",
-          "auditMode": "direct"
-        }
-      },
-      "frameworks": {
-        "net8.0": {
-          "targetAlias": "net8.0",
-          "dependencies": {
-            "Microsoft.NET.Test.Sdk": {
-              "target": "Package",
-              "version": "[17.8.0, )"
-            },
-            "Moq": {
-              "target": "Package",
-              "version": "[4.20.70, )"
-            },
-            "coverlet.collector": {
-              "target": "Package",
-              "version": "[6.0.0, )"
-            },
-            "xunit": {
-              "target": "Package",
-              "version": "[2.5.3, )"
-            },
-            "xunit.runner.visualstudio": {
-              "target": "Package",
-              "version": "[2.5.3, )"
             }
           },
           "imports": [

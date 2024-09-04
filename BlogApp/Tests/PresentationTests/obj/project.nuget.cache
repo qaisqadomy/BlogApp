@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "NSCrm2kjiqI=",
+  "dgSpecHash": "+HEqY6EzFSM=",
   "success": true,
-  "projectFilePath": "/home/qais/Downloads/new/BlogAppTask/BlogApp/Tests/PresentationTests/PresentationTests.csproj",
+  "projectFilePath": "/home/qais/Downloads/BlogAppTask/BlogApp/Tests/PresentationTests/PresentationTests.csproj",
   "expectedPackageFiles": [
     "/home/qais/.nuget/packages/castle.core/5.1.1/castle.core.5.1.1.nupkg.sha512",
     "/home/qais/.nuget/packages/coverlet.collector/6.0.0/coverlet.collector.6.0.0.nupkg.sha512",

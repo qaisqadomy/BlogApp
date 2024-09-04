@@ -6689,18 +6689,18 @@
     },
     "Application/1.0.0": {
       "type": "project",
-      "path": "../../Application/Application.csproj",
-      "msbuildProject": "../../Application/Application.csproj"
+      "path": "../../src/application/Application/Application.csproj",
+      "msbuildProject": "../../src/application/Application/Application.csproj"
     },
     "Domain/1.0.0": {
       "type": "project",
-      "path": "../../Domain/Domain.csproj",
-      "msbuildProject": "../../Domain/Domain.csproj"
+      "path": "../../src/domain/Domain/Domain.csproj",
+      "msbuildProject": "../../src/domain/Domain/Domain.csproj"
     },
     "Infrastructure/1.0.0": {
       "type": "project",
-      "path": "../../Infrastructure/Infrastructure.csproj",
-      "msbuildProject": "../../Infrastructure/Infrastructure.csproj"
+      "path": "../../src/infrastructure/Infrastructure/Infrastructure.csproj",
+      "msbuildProject": "../../src/infrastructure/Infrastructure/Infrastructure.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -6720,11 +6720,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/qais/Downloads/new/BlogAppTask/BlogApp/Tests/ServicesTests/ServicesTests.csproj",
+      "projectUniqueName": "/home/qais/Downloads/BlogAppTask/BlogApp/Tests/ServicesTests/ServicesTests.csproj",
       "projectName": "ServicesTests",
-      "projectPath": "/home/qais/Downloads/new/BlogAppTask/BlogApp/Tests/ServicesTests/ServicesTests.csproj",
+      "projectPath": "/home/qais/Downloads/BlogAppTask/BlogApp/Tests/ServicesTests/ServicesTests.csproj",
       "packagesPath": "/home/qais/.nuget/packages/",
-      "outputPath": "/home/qais/Downloads/new/BlogAppTask/BlogApp/Tests/ServicesTests/obj/",
+      "outputPath": "/home/qais/Downloads/BlogAppTask/BlogApp/Tests/ServicesTests/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/home/qais/.nuget/NuGet/NuGet.Config"
@@ -6739,11 +6739,11 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "/home/qais/Downloads/new/BlogAppTask/BlogApp/Application/Application.csproj": {
-              "projectPath": "/home/qais/Downloads/new/BlogAppTask/BlogApp/Application/Application.csproj"
+            "/home/qais/Downloads/BlogAppTask/BlogApp/src/application/Application/Application.csproj": {
+              "projectPath": "/home/qais/Downloads/BlogAppTask/BlogApp/src/application/Application/Application.csproj"
             },
-            "/home/qais/Downloads/new/BlogAppTask/BlogApp/Domain/Domain.csproj": {
-              "projectPath": "/home/qais/Downloads/new/BlogAppTask/BlogApp/Domain/Domain.csproj"
+            "/home/qais/Downloads/BlogAppTask/BlogApp/src/domain/Domain/Domain.csproj": {
+              "projectPath": "/home/qais/Downloads/BlogAppTask/BlogApp/src/domain/Domain/Domain.csproj"
             }
           }
         }
