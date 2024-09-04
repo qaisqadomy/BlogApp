@@ -6,7 +6,6 @@ namespace Presentation.Middleware;
 /// <summary>
 /// Middleware for handling exceptions and generating appropriate HTTP responses.
 /// </summary>
-
 public class ExceptionHandlingMiddleware(RequestDelegate next, ILogger<ExceptionHandlingMiddleware> logger)
 {
     private readonly RequestDelegate _next = next;
@@ -14,8 +13,7 @@ public class ExceptionHandlingMiddleware(RequestDelegate next, ILogger<Exception
 
     /// <summary>
     /// Invokes the middleware to handle exceptions and generate appropriate HTTP responses.
-    /// </summary>
-  
+    /// </summary>  
     public async Task InvokeAsync(HttpContext context)
     {
         try

@@ -23,16 +23,15 @@ public class CommentServiceTests
         [Fact]
         public void GetAll_ReturnsCommentViewDTOs()
         {
-            
             List<Comment> comments = new()
             {
-                new() { Body = "Comment 1", CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, AuthorId = 1 },
-                new() { Body = "Comment 2", CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, AuthorId = 2 }
+                TestHelper.Comment1(),
+                TestHelper.Comment2()
             };
             List<User> users = new()
             {
-                new() { Id = 1, UserName = "User1", Email = "user1@example.com",Password="123",Bio = "Bio1", Image = "Image1", Following = true },
-                new() { Id = 2, UserName = "User2", Email = "user2@example.com",Password="123", Bio = "Bio2", Image = "Image2", Following = false }
+                TestHelper.User1(),
+                TestHelper.User2()
             };
 
             mockCommentRepository.Setup(repo => repo.GetAll()).Returns(comments);
@@ -41,36 +40,26 @@ public class CommentServiceTests
             List<CommentViewDTO> result = commentService.GetAll();
             
             Assert.Equal(2, result.Count);
-            Assert.Equal("Comment 1", result[0].Body);
-            Assert.Equal("Comment 2", result[1].Body);
-            Assert.Equal("User1", result[0].UserDataDTO.UserName);
-            Assert.Equal("User2", result[1].UserDataDTO.UserName);
+            Assert.Equal(TestHelper.Comment1().Body, result[0].Body);
+            Assert.Equal(TestHelper.Comment2().Body, result[1].Body);
+            Assert.Equal( TestHelper.User1().UserName, result[0].UserDataDTO.UserName);
+            Assert.Equal( TestHelper.User2().UserName, result[1].UserDataDTO.UserName);
         }
 
         [Fact]
         public void AddComment_CallsAddCommentOnRepository()
         {
-            
-            CommentDTO commentDto = new()
-            {
-                Body = "New Comment",
-                CreatedAt = DateTime.Now,
-                UpdatedAt = DateTime.Now,
-                AuthorId = 1
-            };
+            CommentDTO commentDto = TestHelper.CommentDto();
             commentService.AddComment(commentDto);
             mockCommentRepository.Verify(repo => repo.AddComment(It.IsAny<Comment>()), Times.Once);
         }
 
         [Fact]
         public void DeleteComment_CallsDeleteCommentOnRepository()
-        {
-            
+        {            
             int commentId = 1;
 
-            
             commentService.DeleteComment(commentId);
-
             
             mockCommentRepository.Verify(repo => repo.DeleteComment(commentId), Times.Once);
         }

@@ -4,6 +4,7 @@ using Domain.Exeptions;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using Moq;
+using System.Diagnostics.CodeAnalysis;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
@@ -11,6 +12,7 @@ using System.Text;
 
 namespace RepositoriesTests;
 
+[ExcludeFromCodeCoverage]
 public class UserRepositoryTests
 {
     private readonly InMemoryDB _inMemoryDb;
@@ -33,32 +35,31 @@ public class UserRepositoryTests
     public void Register_ShouldAddUserToDatabase()
     {
 
-        User user = new() { UserName = "qais", Email = "qais@gmail.com", Password = "password123", Bio = "qqq", Image = "dsadsad", Following = false };
+        User user = TestHelper.User1();
 
 
         _userRepository.Register(user);
-        User result = _inMemoryDb.DbContext.Users.FirstOrDefault(u => u.Email == "qais@gmail.com")!;
-
+        User result = _inMemoryDb.DbContext.Users.FirstOrDefault(u => u.Email == TestHelper.User1().Email)!;
 
         Assert.NotNull(result);
-        Assert.Equal("qais", result.UserName);
+        Assert.Equal(TestHelper.User1().UserName, result.UserName);
     }
 
     [Fact]
     public void Login_ShouldReturnJwtTokenForValidUser()
     {
 
-        var user = new User { UserName = "qais", Email = "qais@gmail.com", Password = "password123" };
+        var user = TestHelper.User1();
         _userRepository.Register(user);
 
 
-        var token = _userRepository.Login("qais@gmail.com", "password123");
+        var token = _userRepository.Login(TestHelper.User1().Email, TestHelper.User1().Password);
 
 
         Assert.NotNull(token);
         var handler = new JwtSecurityTokenHandler();
         var jwtToken = handler.ReadJwtToken(token);
-        Assert.Equal("qais@gmail.com", jwtToken.Claims.First(c => c.Type == "Email").Value);
+        Assert.Equal(TestHelper.User1().Email, jwtToken.Claims.First(c => c.Type == "Email").Value);
     }
 
     [Fact]
@@ -72,21 +73,21 @@ public class UserRepositoryTests
     [Fact]
     public void Get_ShouldReturnUserForValidToken()
     {
-        var user = new User { UserName = "qais", Email = "qais@gmail.com", Password = "password123" };
+        var user = TestHelper.User1();
         _userRepository.Register(user);
 
-        var token = _userRepository.Login("qais@gmail.com", "password123");
+        var token = _userRepository.Login(TestHelper.User1().Email, TestHelper.User1().Password);
 
         var result = _userRepository.Get(token);
 
         Assert.NotNull(result);
-        Assert.Equal("qais", result.UserName);
-        Assert.Equal("qais@gmail.com", result.Email);
+        Assert.Equal(TestHelper.User1().UserName, result.UserName);
+        Assert.Equal(TestHelper.User1().Email, result.Email);
     }
     [Fact]
     public void Get_ShouldThrowInvalidTokenWhenTokenIsEmpty()
     {
-        
+
         string token = string.Empty;
 
         var exception = Assert.Throws<InvalidToken>(() => _userRepository.Get(token));
@@ -154,32 +155,32 @@ public class UserRepositoryTests
     public void Update_ShouldUpdateUserDetails()
     {
 
-        var user = new User { UserName = "qais@gmail.com", Email = "qais@gmail.com", Password = "password123" };
+        var user = TestHelper.User1();
         _userRepository.Register(user);
 
-        var token = _userRepository.Login("qais@gmail.com", "password123");
+        var token = _userRepository.Login(TestHelper.User1().Email, TestHelper.User1().Password);
 
-        var updatedUser = new User { UserName = "qaisn", Email = "qaisn@gmail.com", Password = "newpassword123" };
+        var updatedUser = TestHelper.User2();
 
 
         _userRepository.Update(updatedUser, token);
 
 
-        var newToken = _userRepository.Login("qaisn@gmail.com", "newpassword123");
+        var newToken = _userRepository.Login(TestHelper.User2().Email, TestHelper.User2().Password);
 
         var result = _userRepository.Get(newToken);
 
 
         Assert.NotNull(result);
-        Assert.Equal("qaisn", result.UserName);
-        Assert.Equal("qaisn@gmail.com", result.Email);
-        Assert.Equal("newpassword123", result.Password);
+        Assert.Equal(TestHelper.User2().UserName, result.UserName);
+        Assert.Equal(TestHelper.User2().Email, result.Email);
+        Assert.Equal(TestHelper.User2().Password, result.Password);
     }
     [Fact]
     public void Update_ShouldThrowExceptionWhenTokenIsNull()
     {
 
-        var user = new User { UserName = "qais", Email = "qais@example.com", Password = "newpassword123" };
+        var user = TestHelper.User1();
 
 
         var exception = Assert.Throws<InvalidToken>(() => _userRepository.Update(user, null!));
@@ -217,8 +218,8 @@ public class UserRepositoryTests
     [Fact]
     public void GetByIds_ShouldReturnUsersForValidIds()
     {
-        var user1 = new User { Id = 1, UserName = "user1", Password = "123", Email = "user1@example.com" };
-        var user2 = new User { Id = 2, UserName = "user2", Password = "123", Email = "user2@example.com" };
+        var user1 = TestHelper.User1();
+        var user2 = TestHelper.User2();
         _userRepository.Register(user1);
         _userRepository.Register(user2);
 

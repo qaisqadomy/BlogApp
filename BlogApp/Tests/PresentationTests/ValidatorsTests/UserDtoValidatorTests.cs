@@ -1,7 +1,7 @@
 using Presentation.Validators;
 using Application.DTOs;
 
-namespace PresentationTests;
+namespace PresentationTests.ValidatorsTests;
 
 public class UserDtoValidatorTests
 {
@@ -15,7 +15,9 @@ public class UserDtoValidatorTests
     [Fact]
     public void Should_Have_Error_When_UserName_Is_Empty()
     {
-        var model = new UserDTO { UserName = string.Empty, Email = "DSDSDS@GMAIL.COM", Password = "112" };
+
+        UserDTO model = TestHelper.UserDto();
+        model.UserName = "";
         var result = _validator.Validate(model);
 
         Assert.False(result.IsValid);
@@ -25,7 +27,8 @@ public class UserDtoValidatorTests
     [Fact]
     public void Should_Have_Error_When_UserName_Is_Too_Short()
     {
-        var model = new UserDTO { UserName = "ab", Email = "DSDSDS@GMAIL.COM", Password = "112" };
+        UserDTO model = TestHelper.UserDto();
+        model.UserName = "ab";
         var result = _validator.Validate(model);
 
         Assert.False(result.IsValid);
@@ -35,7 +38,8 @@ public class UserDtoValidatorTests
     [Fact]
     public void Should_Have_Error_When_UserName_Is_Too_Long()
     {
-        var model = new UserDTO { UserName = new string('a', 51), Email = "DSDSDS@GMAIL.COM", Password = "112" };
+        UserDTO model = TestHelper.UserDto();
+        model.UserName = new string('a', 51);
         var result = _validator.Validate(model);
 
         Assert.False(result.IsValid);
@@ -45,7 +49,8 @@ public class UserDtoValidatorTests
     [Fact]
     public void Should_Have_Error_When_Email_Is_Empty()
     {
-        var model = new UserDTO { Email = string.Empty, UserName = "QAIS", Password = "123" };
+        UserDTO model = TestHelper.UserDto();
+        model.Email = string.Empty;
         var result = _validator.Validate(model);
 
         Assert.False(result.IsValid);
@@ -55,7 +60,8 @@ public class UserDtoValidatorTests
     [Fact]
     public void Should_Have_Error_When_Email_Is_Invalid()
     {
-        var model = new UserDTO { Email = "invalidemail", UserName = "QAIS", Password = "123" };
+        UserDTO model = TestHelper.UserDto();
+        model.Email = "invalidemail";
         var result = _validator.Validate(model);
 
         Assert.False(result.IsValid);
@@ -65,7 +71,9 @@ public class UserDtoValidatorTests
     [Fact]
     public void Should_Have_Error_When_Password_Is_Empty()
     {
-        var model = new UserDTO { Password = string.Empty, Email = "invalidemail", UserName = "QAIS" };
+        UserDTO model = TestHelper.UserDto();
+        model.Password = string.Empty;
+
         var result = _validator.Validate(model);
 
         Assert.False(result.IsValid);
@@ -75,7 +83,9 @@ public class UserDtoValidatorTests
     [Fact]
     public void Should_Have_Error_When_Password_Is_Too_Short()
     {
-        var model = new UserDTO { Password = "12345", Email = "invalidemail", UserName = "QAIS" };
+        UserDTO model = TestHelper.UserDto();
+        model.Password = "123";
+
         var result = _validator.Validate(model);
 
         Assert.False(result.IsValid);
@@ -85,12 +95,7 @@ public class UserDtoValidatorTests
     [Fact]
     public void Should_Not_Have_Any_Validation_Errors_When_Valid()
     {
-        var model = new UserDTO
-        {
-            UserName = "ValidUser",
-            Email = "validuser@example.com",
-            Password = "ValidPwd123"
-        };
+        UserDTO model = TestHelper.UserDto();
         var result = _validator.Validate(model);
 
         Assert.True(result.IsValid);

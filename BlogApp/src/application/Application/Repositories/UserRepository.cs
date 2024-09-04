@@ -13,7 +13,6 @@ namespace Application.Repositories;
 /// <summary>
 /// Provides data access methods for managing users in the database.
 /// </summary>
-
 public class UserRepository(AppDbContext context, IConfiguration configuration) : IUserRepository
 {
     private readonly AppDbContext _context = context;
@@ -22,7 +21,6 @@ public class UserRepository(AppDbContext context, IConfiguration configuration) 
     /// <summary>
     /// Retrieves a user from the database based on the provided JWT token.
     /// </summary>
-
     public User Get(string token)
     {
         if (string.IsNullOrEmpty(token))
@@ -57,7 +55,6 @@ public class UserRepository(AppDbContext context, IConfiguration configuration) 
     /// <summary>
     /// Retrieves a list of users by their IDs.
     /// </summary>
- 
     public List<User> GetByIds(List<int> AuthorId)
     {
         List<User> users = _context.Users.Where(u => AuthorId.Contains(u.Id)).ToList();
@@ -67,7 +64,6 @@ public class UserRepository(AppDbContext context, IConfiguration configuration) 
     /// <summary>
     /// Authenticates a user based on email and password, and returns a JWT token if successful.
     /// </summary>
-
     public string Login(string email, string password)
     {
         User user = _context.Users.FirstOrDefault(u => u.Email == email && u.Password == password)
@@ -95,7 +91,6 @@ public class UserRepository(AppDbContext context, IConfiguration configuration) 
     /// <summary>
     /// Registers a new user in the database.
     /// </summary>
-
     public void Register(User user)
     {
         _context.Users.Add(user);
@@ -105,7 +100,6 @@ public class UserRepository(AppDbContext context, IConfiguration configuration) 
     /// <summary>
     /// Updates the details of an existing user based on the provided JWT token.
     /// </summary>
-  
     public void Update(User user, string token)
     {
         if (string.IsNullOrEmpty(token))

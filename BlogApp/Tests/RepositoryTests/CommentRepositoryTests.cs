@@ -19,39 +19,37 @@ public class CommentRepositoryTests
     public void GetAll_ShouldReturnAllComments()
     {
 
-        Comment comment1 = new() { Id = 1, Body = "First comment", CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, AuthorId = 1 };
-        Comment comment2 = new() { Id = 2, Body = "Second comment", CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, AuthorId = 1 };
+        Comment comment1 = TestHelper.Comment1();
+        Comment comment2 = TestHelper.Comment2();
         _commentRepository.AddComment(comment1);
         _commentRepository.AddComment(comment2);
 
-
         List<Comment> result = _commentRepository.GetAll();
-
 
         Assert.NotNull(result);
         Assert.Equal(2, result.Count);
-        Assert.Contains(result, c => c.Body == "First comment");
-        Assert.Contains(result, c => c.Body == "Second comment");
+        Assert.Contains(result, c => c.Body == TestHelper.Comment1().Body);
+        Assert.Contains(result, c => c.Body == TestHelper.Comment2().Body);
     }
 
     [Fact]
     public void AddComment_ShouldAddCommentToDatabase()
     {
 
-        Comment comment = new() { Id = 1, Body = "New comment", CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, AuthorId = 1 };
+        Comment comment = TestHelper.Comment1();
 
         _commentRepository.AddComment(comment);
         List<Comment> result = _commentRepository.GetAll();
 
         Assert.Single(result);
-        Assert.Equal("New comment", result.First().Body);
+        Assert.Equal(TestHelper.Comment1().Body, result.First().Body);
     }
 
     [Fact]
     public void DeleteComment_ShouldRemoveCommentFromDatabase()
     {
 
-        Comment comment = new() { Id = 1, Body = "Comment to delete", CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, AuthorId = 1 };
+        Comment comment = TestHelper.Comment1();
         _commentRepository.AddComment(comment);
 
         _commentRepository.DeleteComment(1);

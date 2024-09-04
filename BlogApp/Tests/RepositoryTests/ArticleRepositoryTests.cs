@@ -19,45 +19,20 @@ public class ArticleRepositoryTests
     [Fact]
     public void AddArticle_ShouldAddArticleToDatabase()
     {
-        var article = new Article
-        {
-            Title = "Title",
-            Slug = "qais",
-            Description = "qqqqqq",
-            Body = "sasasa",
-            Tags = new List<string> { "dss" },
-            AuthorId = 0
-        };
+        var article =TestHelper.Article1();
 
         _articleRepository.AddArticle(article);
         var result = _articleRepository.GetAll();
 
         Assert.Single(result);
-        Assert.Equal("Title", result.First().Title);
+        Assert.Equal(TestHelper.Article1().Title, result.First().Title);
     }
 
     [Fact]
     public void GetAll_ShouldReturnAllArticles()
     {
-        var article1 = new Article
-        {
-            Title = "Title1",
-            Slug = "qais",
-            Description = "qqqqqq",
-            Body = "sasasa",
-            Tags = new List<string> { "dss" },
-            AuthorId = 0
-        };
-
-        var article2 = new Article
-        {
-            Title = "Title2",
-            Slug = "qais",
-            Description = "qqqqqq",
-            Body = "sasasa",
-            Tags = new List<string> { "dss" },
-            AuthorId = 0
-        };
+        var article1 = TestHelper.Article1();
+        var article2 = TestHelper.Article2();
 
         _articleRepository.AddArticle(article1);
         _articleRepository.AddArticle(article2);
@@ -66,8 +41,8 @@ public class ArticleRepositoryTests
 
         Assert.NotNull(result);
         Assert.Equal(2, result.Count);
-        Assert.Contains(result, a => a.Title == "Title1");
-        Assert.Contains(result, a => a.Title == "Title2");
+        Assert.Contains(result, a => a.Title == TestHelper.Article1().Title);
+        Assert.Contains(result, a => a.Title == TestHelper.Article2().Title);
     }
 
     [Fact]
@@ -119,49 +94,24 @@ public class ArticleRepositoryTests
     [Fact]
     public void UpdateArticle_ShouldUpdateExistingArticle()
     {
-        var article = new Article
-        {
-            Title = "Title",
-            Slug = "qais",
-            Description = "qqqqqq",
-            Body = "sasasa",
-            Tags = new List<string> { "dss" },
-            AuthorId = 0
-        };
+        var article = TestHelper.Article1();
 
         _articleRepository.AddArticle(article);
 
-        var updatedArticle = new Article
-        {
-            Title = "Updated Title",
-            Slug = "qais",
-            Description = "Updated description",
-            Body = "sasasa",
-            Tags = new List<string> { "dss" },
-            AuthorId = 0
-        };
+        var updatedArticle = TestHelper.Article2();
 
         _articleRepository.UpdateArticle(updatedArticle, 1);
         var result = _articleRepository.GetAll().FirstOrDefault(a => a.Id == 1);
 
         Assert.NotNull(result);
-        Assert.Equal("Updated Title", result.Title);
-        Assert.Equal("Updated description", result.Description);
+        Assert.Equal(TestHelper.Article2().Title, result.Title);
+        Assert.Equal(TestHelper.Article2().Description, result.Description);
     }
 
     [Fact]
     public void UpdateArticle_ShouldThrowExceptionWhenArticleNotFound()
     {
-        var updatedArticle = new Article
-        {
-            Title = "Title",
-            Slug = "qais",
-            Description = "qqqqqq",
-            Body = "sasasa",
-            Tags = new List<string> { "dss" },
-            AuthorId = 0
-        };
-
+        var updatedArticle = TestHelper.Article1();
         var exception = Assert.Throws<ArticleNotFound>(() => _articleRepository.UpdateArticle(updatedArticle, 999));
         Assert.Equal("Article with the Id : 999 not found", exception.Message);
     }
@@ -175,15 +125,7 @@ public class ArticleRepositoryTests
     [Fact]
     public void DeleteArticle_ShouldRemoveArticleFromDatabase()
     {
-        var article = new Article
-        {
-            Title = "Title",
-            Slug = "qais",
-            Description = "qqqqqq",
-            Body = "sasasa",
-            Tags = new List<string> { "dss" },
-            AuthorId = 0
-        };
+        var article = TestHelper.Article1();
 
         _articleRepository.AddArticle(article);
 

@@ -6,10 +6,8 @@ namespace Infrastructure.Data;
 /// <summary>
 /// Represents the application's database context for Entity Framework Core.
 /// </summary>
-
 public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(options)
 {
-
     /// <summary>
     /// Gets or sets the <see cref="DbSet{User}"/> for users in the database.
     /// </summary>
@@ -30,6 +28,5 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
-        // Add additional configuration here if needed.
     }
 }

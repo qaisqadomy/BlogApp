@@ -7,7 +7,6 @@ namespace Application.Services;
 /// <summary>
 /// Provides services for managing articles, including retrieval, creation, update, and deletion.
 /// </summary>
-
 public class ArticleService(IArticleRepository articleRepository, IUserRepository userRepository)
 {
     private readonly IArticleRepository _articleRepository = articleRepository;
@@ -16,7 +15,6 @@ public class ArticleService(IArticleRepository articleRepository, IUserRepositor
     /// <summary>
     /// Retrieves all articles and their associated user data.
     /// </summary>
-
     public List<ArticleViewDTO> GetAll()
     {
         List<Article> articles = _articleRepository.GetAll();
@@ -55,7 +53,6 @@ public class ArticleService(IArticleRepository articleRepository, IUserRepositor
     /// <summary>
     /// Retrieves articles based on specified filters and their associated user data.
     /// </summary>
-
     public List<ArticleViewDTO> GetArticle(string? tag, string? author, bool? favorited)
     {
         List<Article> articles = _articleRepository.GetArticle(tag, author, favorited);
@@ -94,7 +91,6 @@ public class ArticleService(IArticleRepository articleRepository, IUserRepositor
     /// <summary>
     /// Adds a new article to the repository.
     /// </summary>
- 
     public void AddArticle(ArticleDTO art)
     {
         Article article = new()
@@ -139,7 +135,6 @@ public class ArticleService(IArticleRepository articleRepository, IUserRepositor
     /// <summary>
     /// Deletes an article from the repository.
     /// </summary>
-
     public void DeleteArticle(int id)
     {
         _articleRepository.DeleteArticle(id);

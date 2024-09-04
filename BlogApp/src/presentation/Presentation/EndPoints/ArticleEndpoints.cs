@@ -11,7 +11,6 @@ public static class ArticleEndpoints
     /// <summary>
     /// Maps the article-related endpoints to the specified <see cref="WebApplication"/> instance.
     /// </summary>
-
     public static void MapArticleEndpoint(this WebApplication app)
     {
         RouteGroupBuilder ArticleGroup = app.MapGroup("/article")
@@ -20,7 +19,6 @@ public static class ArticleEndpoints
         /// <summary>
         /// Gets a list of articles based on optional filters.
         /// </summary>
-      
         ArticleGroup.MapGet("/", (string? tag, string? author, bool? favorited, ArticleService service) =>
         {
             List<ArticleViewDTO> articleDTO = service.GetArticle(tag, author, favorited);
@@ -30,7 +28,6 @@ public static class ArticleEndpoints
         /// <summary>
         /// Gets all articles.
         /// </summary>
-    
         ArticleGroup.MapGet("/articles", (ArticleService service) =>
         {
             List<ArticleViewDTO> articleDTO = service.GetAll();
@@ -40,7 +37,6 @@ public static class ArticleEndpoints
         /// <summary>
         /// Adds a new article.
         /// </summary>
-      
         ArticleGroup.MapPost("/", (ArticleDTO articleDTO, ArticleService service) =>
         {
             service.AddArticle(articleDTO);
@@ -50,7 +46,6 @@ public static class ArticleEndpoints
         /// <summary>
         /// Updates an existing article.
         /// </summary>
-   
         ArticleGroup.MapPut("/{id}", (int id, ArticleDTO articleDTO, ArticleService service) =>
         {
             service.UpdateArticle(articleDTO, id);
@@ -60,7 +55,6 @@ public static class ArticleEndpoints
         /// <summary>
         /// Deletes an article.
         /// </summary>
-    
         ArticleGroup.MapDelete("/{id}", (int id, ArticleService service) =>
         {
             service.DeleteArticle(id);

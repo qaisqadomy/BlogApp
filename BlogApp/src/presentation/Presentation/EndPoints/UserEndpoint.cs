@@ -11,7 +11,6 @@ public static class UserEndpoints
     /// <summary>
     /// Maps the user-related endpoints to the specified <see cref="WebApplication"/> instance.
     /// </summary>
-
     public static void MapUserEndpoint(this WebApplication app)
     {
         RouteGroupBuilder UserGroup = app.MapGroup("/user")
@@ -20,7 +19,6 @@ public static class UserEndpoints
         /// <summary>
         /// Registers a new user.
         /// </summary>
-
         UserGroup.MapPost("/register", (UserDTO model, UserService service) =>
         {
             service.Register(model);
@@ -30,7 +28,6 @@ public static class UserEndpoints
         /// <summary>
         /// Logs in a user and returns a token.
         /// </summary>
-        
         UserGroup.MapPost("/login", (string Email, string Password, UserService service) =>
         {
             string token = service.Login(Email, Password);
@@ -40,7 +37,6 @@ public static class UserEndpoints
         /// <summary>
         /// Gets the details of the currently authenticated user.
         /// </summary>
- 
         UserGroup.MapGet("/", (HttpContext context, UserService service) =>
         {
             var authHeader = context.Request.Headers["Authorization"].ToString();
@@ -60,7 +56,6 @@ public static class UserEndpoints
         /// <summary>
         /// Updates the details of the currently authenticated user.
         /// </summary>
-       
         UserGroup.MapPut("/", (HttpContext context, UserDTO user, UserService service) =>
         {
             var authHeader = context.Request.Headers["Authorization"].ToString();

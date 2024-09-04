@@ -5,7 +5,7 @@ using Microsoft.Extensions.Logging;
 using System.Text.Json;
 using Domain.Exeptions;
 
-namespace PresentationTests;
+namespace PresentationTests.MiddlewareTests;
 
 public class MiddleWareTests
 {
@@ -33,37 +33,37 @@ public class MiddleWareTests
         responseBodyStream.Seek(0, SeekOrigin.Begin);
         await assertAction(context);
     }
-     [Fact]
-        public async Task Handle_SuccessfulRequest_Returns200AndNoContent()
-        {
-           RequestDelegate requestDelegate = async context =>
+    [Fact]
+    public async Task Handle_SuccessfulRequest_Returns200AndNoContent()
     {
-        // Successful request, no exception thrown
-        context.Response.StatusCode = StatusCodes.Status200OK;
-        context.Response.ContentType = "text/plain"; // Ensure ContentType is set
-        await context.Response.WriteAsync("Success");
-    };
+        RequestDelegate requestDelegate = async context =>
+ {
 
-    // Act
-    var context = new DefaultHttpContext();
-    var middleware = new ExceptionHandlingMiddleware(requestDelegate, _mockLogger.Object);
+     context.Response.StatusCode = StatusCodes.Status200OK;
+     context.Response.ContentType = "text/plain";
+     await context.Response.WriteAsync("Success");
+ };
 
-    // Set up the response body stream to capture output
-    var responseBodyStream = new MemoryStream();
-    context.Response.Body = responseBodyStream;
 
-    await middleware.InvokeAsync(context);
+        var context = new DefaultHttpContext();
+        var middleware = new ExceptionHandlingMiddleware(requestDelegate, _mockLogger.Object);
 
-    // Reset the stream position to read it
-    responseBodyStream.Seek(0, SeekOrigin.Begin);
 
-    // Assert
-    Assert.Equal(StatusCodes.Status200OK, context.Response.StatusCode);
-    Assert.Equal("text/plain", context.Response.ContentType); // Assert ContentType
+        var responseBodyStream = new MemoryStream();
+        context.Response.Body = responseBodyStream;
 
-    var responseBody = await new StreamReader(context.Response.Body).ReadToEndAsync();
-    Assert.Equal("Success", responseBody);
-        }
+        await middleware.InvokeAsync(context);
+
+
+        responseBodyStream.Seek(0, SeekOrigin.Begin);
+
+
+        Assert.Equal(StatusCodes.Status200OK, context.Response.StatusCode);
+        Assert.Equal("text/plain", context.Response.ContentType);
+
+        var responseBody = await new StreamReader(context.Response.Body).ReadToEndAsync();
+        Assert.Equal("Success", responseBody);
+    }
 
     [Fact]
     public async Task Handle_NotFoundException_Returns404AndJson()

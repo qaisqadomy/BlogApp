@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Presentation;
 using Domain.Entities;
+using PresentationTests;
 
 namespace PresentationTests.EndPointsTests
 {
@@ -31,13 +32,7 @@ namespace PresentationTests.EndPointsTests
         [Fact]
         public async Task Post_ShouldAddComment()
         {
-            var newComment = new CommentDTO
-            {
-                Body = "This is a new comment",
-                CreatedAt = DateTime.UtcNow,
-                UpdatedAt = DateTime.UtcNow,
-                AuthorId = 1
-            };
+            var newComment = TestHelper.CommentDto();
 
             var content = new StringContent(JsonSerializer.Serialize(newComment), Encoding.UTF8, "application/json");
             var response = await _client.PostAsync("/comment/", content);
@@ -101,8 +96,9 @@ public class CommentTestFixture : IDisposable
             context.SaveChanges();
 
             context.Comments.AddRange(
-                new Comment { Body = "Test Comment 1", CreatedAt = DateTime.UtcNow, UpdatedAt = DateTime.UtcNow, AuthorId = 1 },
-                new Comment { Body = "Test Comment 2", CreatedAt = DateTime.UtcNow, UpdatedAt = DateTime.UtcNow, AuthorId = 2 }
+                TestHelper.Comment1(),
+                TestHelper.Comment2()
+
             );
             context.SaveChanges();
         }

@@ -8,7 +8,6 @@ namespace Application.Repositories;
 /// <summary>
 /// Provides data access methods for managing articles in the database.
 /// </summary>
-
 public class ArticleRepository(AppDbContext context) : IArticleRepository
 {
     private readonly AppDbContext _context = context;
@@ -16,7 +15,6 @@ public class ArticleRepository(AppDbContext context) : IArticleRepository
     /// <summary>
     /// Adds a new article to the database.
     /// </summary>
-  
     public void AddArticle(Article article)
     {
         _context.Articles.Add(article);
@@ -26,7 +24,6 @@ public class ArticleRepository(AppDbContext context) : IArticleRepository
     /// <summary>
     /// Retrieves all articles from the database.
     /// </summary>
-    
     public List<Article> GetAll()
     {
         List<Article> list = _context.Articles.ToList();
@@ -86,7 +83,6 @@ public class ArticleRepository(AppDbContext context) : IArticleRepository
     /// <summary>
     /// Deletes an article from the database.
     /// </summary>
-
     public void DeleteArticle(int Id)
     {
         Article art = _context.Articles.FirstOrDefault(a => a.Id == Id)

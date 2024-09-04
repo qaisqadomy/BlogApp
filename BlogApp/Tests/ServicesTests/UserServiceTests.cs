@@ -24,21 +24,15 @@ public class UserServiceTests
     {
 
         string token = "validToken";
-        User user = new()
-        {
-            UserName = "testUser",
-            Email = "testuser@example.com",
-            Password = "123"
-
-        };
+        User user = TestHelper.User1();
 
         mockUserRepository.Setup(repo => repo.Get(token)).Returns(user);
 
         GetUserDTO result = userService.Get(token);
 
         Assert.NotNull(result);
-        Assert.Equal("testUser", result.UserName);
-        Assert.Equal("testuser@example.com", result.Email);
+        Assert.Equal(TestHelper.User1().UserName, result.UserName);
+        Assert.Equal(TestHelper.User1().Email, result.Email);
     }
 
     [Fact]
@@ -62,39 +56,26 @@ public class UserServiceTests
     public void Register_CallsRegisterOnRepository()
     {
 
-        UserDTO userDto = new()
-        {
-            UserName = "newUser",
-            Email = "newuser@example.com",
-            Password = "newPassword"
-        };
-
+        UserDTO userDto = TestHelper.UserDto();
 
         userService.Register(userDto);
 
-
         mockUserRepository.Verify(repo => repo.Register(It.Is<User>(u =>
-            u.UserName == "newUser" &&
-            u.Email == "newuser@example.com" &&
-            u.Password == "newPassword")), Times.Once);
+            u.UserName == TestHelper.UserDto().UserName &&
+            u.Email == TestHelper.UserDto().Email &&
+            u.Password == TestHelper.UserDto().Password)), Times.Once);
     }
 
     [Fact]
     public void Update_CallsUpdateOnRepository()
     {
-
-        UserDTO userDto = new()
-        {
-            UserName = "updatedUser",
-            Email = "updateduser@example.com",
-            Password = "updatedPassword"
-        };
+        UserDTO userDto = TestHelper.UserDto();
         var token = "validToken";
         userService.Update(userDto, token);
         mockUserRepository.Verify(repo => repo.Update(It.Is<User>(u =>
-            u.UserName == "updatedUser" &&
-            u.Email == "updateduser@example.com" &&
-            u.Password == "updatedPassword"), token), Times.Once);
+            u.UserName == TestHelper.UserDto().UserName &&
+            u.Email == TestHelper.UserDto().Email &&
+            u.Password == TestHelper.UserDto().Password), token), Times.Once);
     }
 
 }

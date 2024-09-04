@@ -8,7 +8,6 @@ namespace Application.Repositories;
 /// <summary>
 /// Provides data access methods for managing comments in the database.
 /// </summary>
-
 public class CommentRepository(AppDbContext context) : ICommentRepository
 {
     private readonly AppDbContext _context = context;
@@ -16,7 +15,6 @@ public class CommentRepository(AppDbContext context) : ICommentRepository
     /// <summary>
     /// Retrieves all comments from the database.
     /// </summary>
-
     public List<Comment> GetAll()
     {
         List<Comment> list = _context.Comments.ToList();
@@ -26,7 +24,6 @@ public class CommentRepository(AppDbContext context) : ICommentRepository
     /// <summary>
     /// Adds a new comment to the database.
     /// </summary>
-
     public void AddComment(Comment comment)
     {
         _context.Comments.Add(comment);

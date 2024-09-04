@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Presentation;
+using PresentationTests;
 
 namespace PresentationTests.EndPointsTests
 {
@@ -32,7 +33,7 @@ namespace PresentationTests.EndPointsTests
         [Fact]
         public async Task GetArticle_WithParameters_ShouldReturnOkWithArticles()
         {
-            var response = await _client.GetAsync("/article?tag=Tag1");
+            var response = await _client.GetAsync("/article?tag=tag1");
 
             response.EnsureSuccessStatusCode();
             var responseString = await response.Content.ReadAsStringAsync();
@@ -45,18 +46,7 @@ namespace PresentationTests.EndPointsTests
         [Fact]
         public async Task Post_ShouldAddArticle()
         {
-            var newArticle = new Article
-            {
-                Slug = "NEW_SLUG",
-                Description = "New Description",
-                Title = "New Article",
-                Body = "Content for new article.",
-                AuthorId = 3,
-                Tags = new List<string> { "NewTag" },
-                Favorited = false,
-                CreatedAt = DateTime.UtcNow,
-                UpdatedAt = DateTime.UtcNow
-            };
+            var newArticle =TestHelper.Article3();
 
             var content = new StringContent(JsonSerializer.Serialize(newArticle), Encoding.UTF8, "application/json");
 
@@ -74,18 +64,7 @@ namespace PresentationTests.EndPointsTests
         public async Task Put_ShouldUpdateArticle()
         {
             var articleId = 1;
-            var updatedArticle = new Article
-            {
-                Slug = "UPDATED_SLUG",
-                Description = "Updated Description",
-                Title = "Updated Article",
-                Body = "Updated content.",
-                AuthorId = 1,
-                Tags = new List<string> { "UpdatedTag" },
-                Favorited = true,
-                CreatedAt = DateTime.UtcNow,
-                UpdatedAt = DateTime.UtcNow
-            };
+            var updatedArticle = TestHelper.Article2();
 
             var content = new StringContent(JsonSerializer.Serialize(updatedArticle), Encoding.UTF8, "application/json");
 
@@ -152,28 +131,8 @@ namespace PresentationTests.EndPointsTests
 
             var articles = new List<Article>
             {
-                new() {
-                    Slug = "QASS",
-                    Description = "DSDS",
-                    Title = "Sample Article 1",
-                    Body = "Content for sample article 1.",
-                    AuthorId = 1,
-                    Tags = new List<string> { "Tag1" },
-                    Favorited = false,
-                    CreatedAt = DateTime.UtcNow,
-                    UpdatedAt = DateTime.UtcNow
-                },
-                new() {
-                    Slug = "QASS",
-                    Description = "DSDS",
-                    Title = "Sample Article 2",
-                    Body = "Content for sample article 2.",
-                    AuthorId = 2,
-                    Tags = new List<string> { "Tag2" },
-                    Favorited = true,
-                    CreatedAt = DateTime.UtcNow,
-                    UpdatedAt = DateTime.UtcNow
-                }
+                TestHelper.Article1(),
+               TestHelper.Article2()
             };
 
             context.Articles.AddRange(articles);

@@ -21,12 +21,7 @@ public class UserEndpointsTests(UserTestFixture fixture) : IClassFixture<UserTes
     public async Task RegisterUser_ShouldReturnOk()
     {
 
-        var userDto = new UserDTO
-        {
-            UserName = "testuser",
-            Email = "test@example.com",
-            Password = "password123"
-        };
+        var userDto = TestHelper.UserDto();
 
         var content = new StringContent(JsonSerializer.Serialize(userDto), Encoding.UTF8, "application/json");
 
@@ -41,8 +36,8 @@ public class UserEndpointsTests(UserTestFixture fixture) : IClassFixture<UserTes
     [Fact]
     public async Task LoginUser_ShouldReturnToken()
     {
-        string email = "user2@example.com";
-        string password = "password2";
+         string email = TestHelper.User1().Email;
+        string password = TestHelper.User1().Password;
 
         var response = await _client.PostAsync($"/user/login?Email={email}&Password={password}", null);
 
@@ -63,8 +58,8 @@ public class UserEndpointsTests(UserTestFixture fixture) : IClassFixture<UserTes
     public async Task GetUser_ShouldReturnOkWithUser_WhenAuthorized()
     {
 
-        string email = "user2@example.com";
-        string password = "password2";
+        string email = TestHelper.User1().Email;
+        string password = TestHelper.User1().Password;
 
         var loginResponse = await _client.PostAsync($"/user/login?Email={email}&Password={password}", null);
         loginResponse.EnsureSuccessStatusCode();
@@ -83,14 +78,14 @@ public class UserEndpointsTests(UserTestFixture fixture) : IClassFixture<UserTes
         var user = JsonSerializer.Deserialize<GetUserDTO>(responseString, options);
 
         Assert.NotNull(user);
-        Assert.Equal("user2", user.UserName);
+        Assert.Equal(TestHelper.User1().UserName, user.UserName);
     }
 
     [Fact]
     public async Task UpdateUser_ShouldReturnOk_WhenAuthorized()
     {
-        string email = "user2@example.com";
-        string password = "password2";
+        string email = TestHelper.User1().Email;
+        string password = TestHelper.User1().Password;
 
         var loginResponse = await _client.PostAsync($"/user/login?Email={email}&Password={password}", null);
         loginResponse.EnsureSuccessStatusCode();
@@ -99,12 +94,7 @@ public class UserEndpointsTests(UserTestFixture fixture) : IClassFixture<UserTes
 
         _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
-        var userDto = new UserDTO
-        {
-            UserName = "updatedUser",
-            Email = "updated@example.com",
-            Password = "newpassword123"
-        };
+        var userDto = TestHelper.UserDto();
 
         var content = new StringContent(JsonSerializer.Serialize(userDto), Encoding.UTF8, "application/json");
         var response = await _client.PutAsync("/user/", content);
@@ -168,8 +158,8 @@ public class UserTestFixture : IDisposable
 
         var users = new List<User>
             {
-                new() {  UserName = "user1", Email = "user1@example.com", Password = "password1" },
-                new() {  UserName = "user2", Email = "user2@example.com", Password = "password2" }
+                TestHelper.User1(),
+                TestHelper.User2()
             };
 
         context.Users.AddRange(users);
